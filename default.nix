@@ -16,7 +16,6 @@
   programs.hyprland.withUWSM = true;
   programs.hyprland.xwayland.enable = true;
   programs.uwsm.enable = true;
-  programs.waybar.enable = true;
 
   home-manager.useUserPackages = true;
   home-manager.useGlobalPkgs = true;
