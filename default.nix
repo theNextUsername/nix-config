@@ -27,6 +27,7 @@
     kitty
     hyprpolkitagent
     dolphin
+    kdePackages.breeze
     kdePackages.qtwayland
     kdePackages.qtsvg
     kdePackages.kio-fuse
