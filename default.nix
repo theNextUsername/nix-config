@@ -26,6 +26,11 @@
     git-credential-manager
     kitty
     hyprpolkitagent
+    dolphin
+    kdePackages.qtwayland
+    kdePackages.qtsvg
+    kdePackages.kio-fuse
+    kdePackages.kio-extras
   ];
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     konsole
