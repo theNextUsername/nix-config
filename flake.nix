@@ -19,7 +19,7 @@
 
   outputs = { self, nixpkgs, nixos-hardware, home-manager }@inputs: {
     nixosConfigurations = {
-      nixos-laptop = let 
+      aster = let 
         username = "tnu";
         specialArgs = { inherit username; };
       in
@@ -27,6 +27,7 @@
           system = "x86_64-linux";
           modules = [
             ./configuration.nix
+            ./hosts/aster
             nixos-hardware.nixosModules.framework-13th-gen-intel
             home-manager.nixosModules.home-manager
             {
