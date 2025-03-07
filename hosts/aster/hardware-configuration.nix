@@ -36,7 +36,6 @@
   # networking.interfaces.ens18.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  {
   services.fwupd.enable = true;
   # we need fwupd 1.9.7 to downgrade the fingerprint sensor firmware
   # wget https://github.com/FrameworkComputer/linux-docs/raw/main/goodix-moc-609c-v01000330.cab
@@ -47,5 +46,4 @@
   }) {
     inherit (pkgs) system;
   }).fwupd;
-}
 }
