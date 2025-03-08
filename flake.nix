@@ -15,9 +15,13 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:danth/stylix/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";      
+    };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager }@inputs: {
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, stylix }@inputs: {
     nixosConfigurations = {
       aster = let 
         username = "tnu";
@@ -28,6 +32,7 @@
           modules = [
             ./configuration.nix
             ./hosts/aster
+            stylix.nixosModules.stylix
             nixos-hardware.nixosModules.framework-13th-gen-intel
             home-manager.nixosModules.home-manager
             {

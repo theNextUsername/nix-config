@@ -1,3 +1,6 @@
 { config, ... }: {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./stylix.nix
+  ];
 }
