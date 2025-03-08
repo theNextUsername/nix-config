@@ -23,6 +23,9 @@
     pulse.enable = true;
   };
 
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
   services.libinput.enable = true;
 
   users.users.tnu = {
