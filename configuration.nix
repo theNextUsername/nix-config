@@ -3,45 +3,6 @@
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "aster"; # Define your hostname.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-
-  time.timeZone = "America/Indiana/Indianapolis";
-
-  services.printing.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
-
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  services.libinput.enable = true;
-
-  users.users.tnu = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "tnu" ]; # Enable ‘sudo’ for the user.
-  };
-
-  programs.firefox.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    wget
-    gitFull
-  ];
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  services.openssh.enable = true;
-
-  networking.firewall.allowedTCPPorts = [ 22 ];
-  networking.firewall.allowedUDPPorts = [  ];
-
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
   #
