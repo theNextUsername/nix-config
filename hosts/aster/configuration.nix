@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports =
@@ -11,6 +11,16 @@
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-original"
+    "steam-unwrapped"
+    "steam-run"
+  ];
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+  };
 
   hardware.opentabletdriver.enable = true;
 

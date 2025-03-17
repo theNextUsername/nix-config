@@ -22,6 +22,7 @@
     usbutils
     git
     git-credential-manager
+    remmina
   ];
 
   programs.git = {
