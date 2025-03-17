@@ -30,7 +30,6 @@
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./configuration.nix
             ./hosts/aster
             stylix.nixosModules.stylix
             nixos-hardware.nixosModules.framework-13th-gen-intel

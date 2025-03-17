@@ -1,4 +1,4 @@
-{ config, pkgs, ...}: let 
+{ pkgs, ...}: let
   background-package = pkgs.stdenvNoCC.mkDerivation {
     name = "background-image";
     src = ./.;
