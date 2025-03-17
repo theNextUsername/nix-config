@@ -56,6 +56,7 @@
     nil
     wireguard-tools
     thunderbird
+    libreoffice-qt6-fresh
   ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
