@@ -37,6 +37,7 @@
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
   services.libinput.enable = true;
+  services.fprintd.enable = true;
 
   environment.systemPackages = with pkgs; [
     vim
