@@ -55,10 +55,11 @@
     wget
     gitFull
     nil
+    markdown-oxide
     wireguard-tools
-    thunderbird
     libreoffice-qt6-fresh
     flatpak-builder
+    claws-mail
   ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
