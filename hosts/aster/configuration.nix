@@ -48,6 +48,7 @@
   services.desktopManager.plasma6.enable = true;
   services.libinput.enable = true;
   services.fprintd.enable = true;
+  services.flatpak.enable = true;
 
   environment.systemPackages = with pkgs; [
     vim
@@ -57,6 +58,7 @@
     wireguard-tools
     thunderbird
     libreoffice-qt6-fresh
+    flatpak-builder
   ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
