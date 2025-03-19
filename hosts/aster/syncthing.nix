@@ -17,6 +17,10 @@
             "Main" = {
                 path = "/home/tnu/Main";
                 devices = [ "windows11-desktop02" ];
+                versioning = {
+                    type = "simple";
+                    params.keep = "10";
+                };
                 ignorePerms = false;
             };
         };
