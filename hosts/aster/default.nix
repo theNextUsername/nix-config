@@ -4,5 +4,6 @@
     ./networking.nix
     ./stylix.nix
     ./sddm.nix
+    ./syncthing.nix
   ];
 }
