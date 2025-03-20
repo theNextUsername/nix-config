@@ -59,7 +59,8 @@
     wireguard-tools
     libreoffice-qt6-fresh
     flatpak-builder
-    claws-mail
+    thunderbird
+    proxmox-backup-client
   ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
