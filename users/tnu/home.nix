@@ -29,6 +29,7 @@
     hyprpolkitagent
     krita
     calc
+    wireshark
   ];
 
   programs.git = {
