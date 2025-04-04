@@ -16,6 +16,7 @@
     "steam-original"
     "steam-unwrapped"
     "steam-run"
+    "ciscoPacketTracer8"
   ];
   programs.steam = {
     enable = true;
@@ -67,6 +68,7 @@
     flatpak-builder
     thunderbird
     proxmox-backup-client
+    ciscoPacketTracer8
   ];
 
   environment.variables = {
