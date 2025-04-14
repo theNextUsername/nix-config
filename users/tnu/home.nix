@@ -30,6 +30,7 @@
     krita
     calc
     wireshark
+    scrcpy
   ];
 
   programs.git = {
