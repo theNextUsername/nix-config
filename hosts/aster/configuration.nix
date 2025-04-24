@@ -22,10 +22,10 @@
     enable = true;
     remotePlay.openFirewall = true;
   };
-  programs.hyprland.enable = true;
-  programs.hyprland.withUWSM = true;
-  programs.hyprland.xwayland.enable = true;
-  programs.uwsm.enable = true;
+  #programs.hyprland.enable = true;
+  #programs.hyprland.withUWSM = true;
+  #programs.hyprland.xwayland.enable = true;
+  #programs.uwsm.enable = true;
 
   hardware.opentabletdriver.enable = true;
 
@@ -36,10 +36,11 @@
 
   users.users.tnu = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "wireshark" ];
   };
 
   programs.firefox.enable = true;
+  programs.wireshark.enable = true;
 
   services.printing.enable = true;
 

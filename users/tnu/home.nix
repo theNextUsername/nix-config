@@ -29,7 +29,6 @@
     hyprpolkitagent
     krita
     calc
-    wireshark
     scrcpy
   ];
 
