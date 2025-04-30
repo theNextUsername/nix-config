@@ -30,6 +30,11 @@
     krita
     calc
     scrcpy
+    signal-desktop
+    obs-studio
+    calc
+    vlc
+    wireshark
   ];
 
   programs.git = {
