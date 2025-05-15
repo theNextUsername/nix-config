@@ -61,7 +61,6 @@
     wget
     gitFull
     nil
-    markdown-oxide
     bash-language-server
     wireguard-tools
     libreoffice-qt6-fresh

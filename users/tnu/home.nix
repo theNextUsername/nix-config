@@ -35,6 +35,7 @@
     calc
     vlc
     wireshark
+    marksman
   ];
 
   programs.git = {
