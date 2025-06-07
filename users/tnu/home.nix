@@ -36,6 +36,10 @@
     vlc
     wireshark
     marksman
+    vscode-langservers-extracted
+    ungoogled-chromium
+    tor-browser
+    protonvpn-gui
   ];
 
   programs.git = {
