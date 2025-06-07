@@ -73,7 +73,7 @@
   ];
 
   environment.variables = {
-    PBS_REPOSITORY = "aster@pbs@pve-cluster02:backup-pool";
+    PBS_REPOSITORY = "aster@pbs@pve-cluster04:backup-pool";
   };
 
   # This option defines the first version of NixOS you have installed on this particular machine,
