@@ -32,6 +32,15 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  system.autoUpgrade = {
+    enable = true;
+    dates = "04:40";
+    flake = "github:theNextUsername/nix-config";
+    flags = [
+        "--update-input" "nixpkgs" "--commit-lock-file"
+    ];
+};
+
   time.timeZone = "America/Indiana/Indianapolis";
 
   users.users.tnu = {
