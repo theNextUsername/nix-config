@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 {
   imports =
@@ -34,10 +34,10 @@
 
   system.autoUpgrade = {
     enable = true;
-    dates = "04:40";
-    flake = "github:theNextUsername/nix-config";
+    dates = "04:00";
+    flake = "path:${config.users.users.tnu.home}/nix-config#${config.networking.hostName}";
     flags = [
-        "--recreate-lock-file" "--no-write-lock-file"
+        "--recreate-lock-file"
     ];
 };
 
