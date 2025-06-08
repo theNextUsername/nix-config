@@ -40,6 +40,7 @@
     ungoogled-chromium
     tor-browser
     protonvpn-gui
+    monero-gui
   ];
 
   programs.git = {
