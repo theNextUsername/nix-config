@@ -37,7 +37,7 @@
     dates = "04:40";
     flake = "github:theNextUsername/nix-config";
     flags = [
-        "--update-input" "nixpkgs"
+        "--update-input" "nixpkgs" "--commit-lock-file"
     ];
 };
 
