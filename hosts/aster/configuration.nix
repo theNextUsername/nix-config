@@ -32,15 +32,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  system.autoUpgrade = {
-    enable = true;
-    dates = "04:00";
-    flake = "path:${config.users.users.tnu.home}/nix-config#${config.networking.hostName}";
-    flags = [
-        "--recreate-lock-file"
-    ];
-};
-
   time.timeZone = "America/Indiana/Indianapolis";
 
   users.users.tnu = {
