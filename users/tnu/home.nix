@@ -61,7 +61,8 @@
     '';
   };
 
-  programs.kitty.enable = true;
+  programs.alacritty.enable = true;
+  programs.helix.enable = true;
 
   services.kdeconnect.enable = true;
 
