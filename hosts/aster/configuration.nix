@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports =
@@ -39,7 +39,10 @@
     extraGroups = [ "wheel" "networkmanager" "wireshark" ];
   };
 
-  programs.firefox.enable = true;
+  programs.firefox = {
+    enable = true;
+    package = pkgs.librewolf;
+  };
   programs.wireshark.enable = true;
 
   services.printing.enable = true;

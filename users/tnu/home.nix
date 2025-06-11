@@ -64,6 +64,17 @@
   programs.alacritty.enable = true;
   programs.helix.enable = true;
 
+  programs.librewolf = {
+    enable = true;
+    # Enable WebGL, cookies and history
+    settings = {
+      "webgl.disabled" = false;
+      "privacy.resistFingerprinting" = false;
+      "privacy.clearOnShutdown.history" = false;
+      "privacy.clearOnShutdown.cookies" = true;
+    };
+  };
+
   services.kdeconnect.enable = true;
 
 
