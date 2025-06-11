@@ -73,6 +73,7 @@
     thunderbird
     proxmox-backup-client
     ciscoPacketTracer8
+    wl-clipboard-rs
   ];
 
   environment.variables = {
