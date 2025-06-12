@@ -19,9 +19,13 @@
       url = "github:danth/stylix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";      
     };
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, stylix }@inputs: {
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, stylix, niri }@inputs: {
     nixosConfigurations = {
       aster = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -30,6 +34,7 @@
             stylix.nixosModules.stylix
             nixos-hardware.nixosModules.framework-13th-gen-intel
             home-manager.nixosModules.home-manager
+            niri.nixosModules.niri
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;

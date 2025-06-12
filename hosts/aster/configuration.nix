@@ -44,6 +44,7 @@
     package = pkgs.librewolf;
   };
   programs.wireshark.enable = true;
+  programs.niri.enable = true;
 
   services.printing.enable = true;
 
