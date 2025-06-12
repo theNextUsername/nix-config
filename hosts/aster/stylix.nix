@@ -17,7 +17,7 @@
       base0A = "699d69";
       base0B = "759889";
       base0C = "799a64";
-      base0D = "488467";
+      base0D = "dfea94";
       base0E = "a07ea0";
       base0F = "539f7c";
       author = "theNextUsername";
