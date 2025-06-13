@@ -75,6 +75,7 @@
     proxmox-backup-client
     ciscoPacketTracer8
     wl-clipboard-rs
+    xwayland-satellite
   ];
 
   environment.variables = {
