@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 {
   imports =
@@ -44,7 +44,24 @@
     package = pkgs.librewolf;
   };
   programs.wireshark.enable = true;
+  programs.nm-applet.enable = true;
   programs.niri.enable = true;
+  services.gnome.gnome-keyring.enable = lib.mkForce false;
+  security.pam.services = {
+    login.kwallet = {
+      enable = true;
+      package = pkgs.kdePackages.kwallet-pam;
+    };
+    kde = {
+      allowNullPassword = false;
+      kwallet = {
+        enable = true;
+        package = pkgs.kdePackages.kwallet-pam;
+      };
+    };
+    kde-fingerprint = lib.mkIf config.services.fprintd.enable { fprintAuth = true; };
+    kde-smartcard = lib.mkIf config.security.pam.p11.enable { p11Auth = true; };
+  };
 
   services.printing.enable = true;
 
@@ -53,14 +70,26 @@
     pulse.enable = true;
   };
 
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  services.displayManager.sddm = {
+    package = pkgs.kdePackages.sddm;
+    theme = lib.mkDefault "breeze";
+    extraPackages = with pkgs.kdePackages; [
+      breeze.qt5
+      breeze-icons
+      kirigami
+      libplasma
+      plasma5support
+      qtsvg
+      qtvirtualkeyboard
+    ];
+  };
+  # services.desktopManager.plasma6.enable = true;
   services.libinput.enable = true;
   services.fprintd.enable = true;
   services.flatpak.enable = true;
 
   environment.systemPackages = with pkgs; [
+    qt6.qtwayland
     vim
     wget
     gitFull

@@ -1,7 +1,29 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
-
+    home.packages = with pkgs; [
+      swaylock
+      swayidle
+      swaybg
+    ];
+    services.mako.enable = true;
+    programs.fuzzel.enable = true;
+    programs.waybar = {
+      enable = true;
+      systemd.enable = true;
+      settings = {
+        mainBar = {
+          layer = "top";
+          height = 30;
+          modules-right = [
+            "pulseaudio"
+            "battery"
+            "clock"
+            "tray"
+          ];
+        };
+      };
+    };
     programs.niri = {
         settings = {
           environment = {
@@ -11,7 +33,9 @@
           };
           spawn-at-startup = [
             { command = [ "xwayland-satellite" ]; }
+            { command = [ "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init" ]; }
           ];
+          prefer-no-csd = true;
           binds = with config.lib.niri.actions; {
             "Mod+Shift+Slash".action = show-hotkey-overlay;
             "XF86AudioRaiseVolume" = {
@@ -136,6 +160,7 @@
             "Mod+Shift+E".action = quit; 
             "Ctrl+Alt+Delete".action = quit; 
             "Mod+Shift+P".action = power-off-monitors; 
+            "Mod+Alt+L".action.spawn = "swaylock";
             "Mod+B".action.spawn = "librewolf";              
             "Mod+T".action.spawn = "alacritty";
           };
