@@ -74,25 +74,15 @@
     pulse.enable = true;
   };
 
-  services.displayManager.sddm = {
-    package = pkgs.kdePackages.sddm;
-    theme = lib.mkDefault "breeze";
-    extraPackages = with pkgs.kdePackages; [
-      breeze.qt5
-      breeze-icons
-      kirigami
-      libplasma
-      plasma5support
-      qtsvg
-      qtvirtualkeyboard
-    ];
-  };
   # services.desktopManager.plasma6.enable = true;
   services.libinput.enable = true;
   services.fprintd.enable = true;
   services.flatpak.enable = true;
 
   environment.systemPackages = with pkgs; [
+    kdePackages.breeze
+    kdePackages.breeze-icons
+    kdePackages.breeze-gtk
     qt6.qtwayland
     vim
     wget

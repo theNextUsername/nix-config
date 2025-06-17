@@ -10,12 +10,17 @@
  in {
     services.displayManager.sddm = {
       enable = true;
-      theme = "breeze";
+      theme = "maya";
       wayland.enable = true;
+      extraPackages = with pkgs.kdePackages; [
+        breeze
+        breeze-icons
+      ];
+      package = pkgs.kdePackages.sddm;
     };
     environment.systemPackages = [
       (
-        pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf.user" ''
+        pkgs.writeTextDir "share/sddm/themes/breeze/theme.conf" ''
            [General]
            background = ${background-package}
         ''
