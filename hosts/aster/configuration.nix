@@ -80,9 +80,6 @@
   services.flatpak.enable = true;
 
   environment.systemPackages = with pkgs; [
-    kdePackages.breeze
-    kdePackages.breeze-icons
-    kdePackages.breeze-gtk
     qt6.qtwayland
     vim
     wget
