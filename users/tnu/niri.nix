@@ -2,31 +2,51 @@
 
 {
     home.packages = with pkgs; [
-      swaylock
       swayidle
       swaybg
+      brightnessctl
+      playerctl
+      libnotify
     ];
-    services.mako.enable = true;
-    programs.fuzzel.enable = true;
-    programs.waybar = {
-      enable = true;
-      systemd.enable = true;
-      settings = {
-        mainBar = {
-          layer = "top";
-          height = 30;
-          modules-right = [
-            "pulseaudio"
-            "battery"
-            "clock"
-            "tray"
-          ];
-        };
+    systemd.user.services.swaybg = {
+      Unit = {
+        Description = "Set window manager background";
+        PartOf = "graphical-session.target";
+        After = "graphical-session.target niri.service";
+        Requisite = "graphical-session.target";
+      };
+      
+      Install= {
+        WantedBy = [ "niri.service" ];
+      };
+      
+      Service = {
+        ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i %h/.config/wallpaper.png";
       };
     };
+    services.mako = {
+      enable = true;
+      settings = {
+        default-timeout = 3000;
+      };
+    };
+    services.swayidle = {
+      enable = true;
+      timeouts = [
+        { timeout = 600; command = "${pkgs.swaylock}/bin/swaylock -fF"; }
+        { timeout = 601; command = "${pkgs.niri}/bin/niri msg action power-off-monitors"; }
+      ];
+      events = [
+        { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock -fF"; }
+      ];
+    };
+    programs.swaylock.enable = true;
+    programs.fuzzel.enable = true;
     programs.niri = {
         settings = {
-          environment = {
+            overview.backdrop-color = "#164f4a";
+            hotkey-overlay.skip-at-startup = true;
+            environment = {
             NIXOS_OZONE_WL = "1";
             DISPLAY = ":0";
             QT_QPA_PLATFORM = "wayland";
@@ -65,9 +85,57 @@
                 "toggle"
               ];
             };
+            "XF86MonBrightnessUp" = {
+              allow-when-locked = true;
+              action.spawn = [
+                "brightnessctl"
+                "s"
+                "10%+"
+              ];
+            };
+            "XF86MonBrightnessDown" = {
+              allow-when-locked = true;
+              action.spawn = [
+                "brightnessctl"
+                "s"
+                "10%-"
+              ];
+            };
+            "XF86AudioPause" = {
+              allow-when-locked = true;
+              action.spawn = [
+                "playerctl"
+                "play-pause"
+              ];
+            };
+            "XF86AudioPlay" = {
+              allow-when-locked = true;
+              action.spawn = [
+                "playerctl"
+                "play-pause"
+              ];
+            };
+            "XF86AudioPrev" = {
+              allow-when-locked = true;
+              action.spawn = [
+                "playerctl"
+                "previous"
+              ];
+            };
+            "XF86AudioNext" = {
+              allow-when-locked = true;
+              action.spawn = [
+                "playerctl"
+                "next"
+              ];
+            };
             "Mod+Q" = {
               repeat = false;
               action = close-window;
+            };
+            "Mod+O" = {
+              repeat = false;
+              action = toggle-overview;
             };
             "Mod+Left".action = focus-column-left;
             "Mod+Down".action = focus-window-down;
@@ -160,9 +228,10 @@
             "Mod+Shift+E".action = quit; 
             "Ctrl+Alt+Delete".action = quit; 
             "Mod+Shift+P".action = power-off-monitors; 
-            "Mod+Alt+L".action.spawn = "swaylock";
+            "Mod+Shift+L".action.spawn = "swaylock";
             "Mod+B".action.spawn = "librewolf";              
             "Mod+T".action.spawn = "alacritty";
+            "Alt+Space".action.spawn = "fuzzel";
           };
         };
       };

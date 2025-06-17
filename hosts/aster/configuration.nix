@@ -45,9 +45,13 @@
   };
   programs.wireshark.enable = true;
   programs.nm-applet.enable = true;
-  programs.niri.enable = true;
+  programs.niri = {
+    enable = true;
+    package = pkgs.niri;
+  };
   services.gnome.gnome-keyring.enable = lib.mkForce false;
   security.pam.services = {
+    swaylock = {};
     login.kwallet = {
       enable = true;
       package = pkgs.kdePackages.kwallet-pam;

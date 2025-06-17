@@ -1,10 +1,12 @@
 { pkgs, ... }:
 
 {
-  imports = [ ./niri.nix ];
+  imports = [ ./waybar.nix ./niri.nix ];
   home.username = "tnu";
   home.homeDirectory = "/home/tnu";
-
+  home.shellAliases = {
+    signal-desktop = "signal-desktop --password-store=kwallet6";
+  };
   home.packages = with pkgs; [
     neofetch
     nnn
@@ -41,7 +43,23 @@
     tor-browser
     protonvpn-gui
     monero-gui
-  ];
+  ]
+  ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+
+  xdg.desktopEntries = {
+    signal = {
+      categories = [ "Network" "InstantMessaging" "Chat" ];
+      comment = "Private messaging from your desktop";
+      exec = "signal-desktop %U --password-store=kwallet6";
+      icon = "signal-desktop";
+      mimeType = [ "x-scheme-handler/sgnl" "x-scheme-handler/signalcaptcha" ];
+      name = "Signal";
+      terminal = false;
+      type = "Application";
+    };
+  };
+
+  fonts.fontconfig.enable = true;
 
   programs.git = {
     enable = true;
