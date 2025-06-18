@@ -43,6 +43,7 @@
     tor-browser
     protonvpn-gui
     monero-gui
+    networkmanagerapplet
   ]
   ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
