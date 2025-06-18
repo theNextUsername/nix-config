@@ -18,7 +18,10 @@ in {
     (pkgs.where-is-my-sddm-theme.override {
       themeConfig.General = {
         background = "${background-package}";
-        backgroundMode = "none";
+        backgroundMode = "aspect";
+        passwordInputCursorVisible = false;
+        showSessionsByDefault = true;
+        showUsersByDefault = false;
       };
     })
   ];
