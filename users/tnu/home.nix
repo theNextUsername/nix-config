@@ -4,6 +4,11 @@
   imports = [ ./waybar.nix ./niri.nix ];
   home.username = "tnu";
   home.homeDirectory = "/home/tnu";
+  home.sessionVariables = {
+    EDITOR = "hx";
+    BROWSER = "librewolf";
+    TERMINAL = "alacritty";
+  };
   home.shellAliases = {
     signal-desktop = "signal-desktop --password-store=kwallet6";
   };

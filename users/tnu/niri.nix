@@ -7,6 +7,7 @@
       brightnessctl
       playerctl
       libnotify
+      xwayland-satellite
     ];
     systemd.user.services.swaybg = {
       Unit = {

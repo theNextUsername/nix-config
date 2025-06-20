@@ -28,22 +28,22 @@
   outputs = { self, nixpkgs, nixos-hardware, home-manager, stylix, niri }@inputs: {
     nixosConfigurations = {
       aster = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./hosts/aster
-            stylix.nixosModules.stylix
-            nixos-hardware.nixosModules.framework-13th-gen-intel
-            home-manager.nixosModules.home-manager
-            niri.nixosModules.niri
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/aster
+          stylix.nixosModules.stylix
+          nixos-hardware.nixosModules.framework-13th-gen-intel
+          home-manager.nixosModules.home-manager
+          niri.nixosModules.niri
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
 
-              home-manager.extraSpecialArgs = inputs;
-              home-manager.users.tnu = import ./users/tnu/home.nix;
-            }
-          ];
-        };
+            home-manager.extraSpecialArgs = inputs;
+            home-manager.users.tnu = import ./users/tnu/home.nix;
+          }
+        ];
+      };
     };
   };
 }
