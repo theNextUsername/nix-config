@@ -10,8 +10,10 @@
   proxmoxLXC.manageNetwork = true;
   networking.useDHCP = true;
   networking.hostName = "tritoma";
+  networking.domain = "homelab.thenextusername.xyz";
 
   environment.systemPackages = with pkgs; [
+    git
     helix
   ];
 

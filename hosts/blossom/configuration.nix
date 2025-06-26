@@ -10,6 +10,7 @@
   proxmoxLXC.manageNetwork = true;
   networking.useDHCP = true;
   networking.hostName = "blossom";
+  networking.domain = "homelab.thenextusername.xyz";
 
   environment.systemPackages = with pkgs; [
     helix
