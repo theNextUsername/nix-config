@@ -38,6 +38,7 @@
           stylix.nixosModules.stylix
           nixos-hardware.nixosModules.framework-13th-gen-intel
           home-manager.nixosModules.home-manager
+          sops-nix.nixosModules.sops
           niri.nixosModules.niri
           {
             home-manager.useGlobalPkgs = true;
@@ -58,7 +59,6 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/blossom
-          sops-nix.nixosModules.sops
         ];
       };
     };
