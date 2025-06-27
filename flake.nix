@@ -15,6 +15,10 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     stylix = {
       url = "github:danth/stylix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";      
@@ -25,7 +29,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, stylix, niri }@inputs: {
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, sops-nix, stylix, niri }@inputs: {
     nixosConfigurations = {
       aster = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -54,6 +58,7 @@
         system = "x86_64-linux";
         modules = [
           ./hosts/blossom
+          sops-nix.nixosModules.sops
         ];
       };
     };
