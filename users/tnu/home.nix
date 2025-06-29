@@ -50,6 +50,7 @@
     monero-gui
     networkmanagerapplet
     rclone
+    age
   ]
   ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 

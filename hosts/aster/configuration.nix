@@ -39,6 +39,10 @@
     extraGroups = [ "wheel" "networkmanager" "wireshark" ];
   };
 
+  programs.direnv = {
+    enable = true;
+    enableBashIntegration = true;
+  };
   programs.firefox = {
     enable = true;
     package = pkgs.librewolf;
@@ -96,6 +100,7 @@
     ciscoPacketTracer8
     wl-clipboard-rs
     xwayland-satellite
+    ssh-to-age
   ];
 
   environment.variables = {
