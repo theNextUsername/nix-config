@@ -5,5 +5,6 @@
     ./stylix.nix
     ./sddm.nix
     ./syncthing.nix
+    ./sops.nix
   ];
 }

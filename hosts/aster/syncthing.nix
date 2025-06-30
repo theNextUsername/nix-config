@@ -1,7 +1,7 @@
 { ... }:
+
 {
-    services = {
-    syncthing = {
+    services.syncthing = {
         enable = true;
         group = "users";
         user = "tnu";
@@ -10,21 +10,20 @@
         overrideDevices = true;
         overrideFolders = true;
         settings = {
-        devices = {
-            "windows11-desktop02" = { id = "4FCIEXC-D7IPWPT-N7ETF3K-73NWFJG-7IAXLLV-4AU4CDH-OEBMOTD-VZHCDQP"; };
-        };
-        folders = {
-            "Main" = {
-                path = "/home/tnu/Main";
-                devices = [ "windows11-desktop02" ];
-                versioning = {
-                    type = "simple";
-                    params.keep = "10";
+            devices = {
+                "windows11-desktop02" = { id = "4FCIEXC-D7IPWPT-N7ETF3K-73NWFJG-7IAXLLV-4AU4CDH-OEBMOTD-VZHCDQP"; };
+            };
+            folders = {
+                "Main" = {
+                    path = "/home/tnu/Main";
+                    devices = [ "windows11-desktop02" ];
+                    versioning = {
+                        type = "simple";
+                        params.keep = "10";
+                    };
+                    ignorePerms = false;
                 };
-                ignorePerms = false;
             };
         };
-        };
-    };
     };
 }

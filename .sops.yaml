@@ -1,9 +1,0 @@
-keys:
-  - &server_blossom age1gj50phkap4jgnsj7vwnwpvp5jsrglckusw3zrtjz98hp6ufdwvdsedg2wg
-  - &admin_tnu age1rf6upjes2ktdu4uwhns7nqwngmrdattesa47v9s3tvjm089fygkquu0lhg
-creation_rules:
-  - path_regex: secrets/[^/]+\.(yaml|json|env|ini|sops)$
-    key_groups:
-      - age:
-          - *server_blossom
-          - *admin_tnu

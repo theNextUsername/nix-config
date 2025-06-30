@@ -15,10 +15,6 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     stylix = {
       url = "github:danth/stylix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";      
@@ -29,7 +25,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, sops-nix, stylix, niri }@inputs: {
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, stylix, niri }@inputs: {
     nixosConfigurations = {
       aster = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -38,7 +34,6 @@
           stylix.nixosModules.stylix
           nixos-hardware.nixosModules.framework-13th-gen-intel
           home-manager.nixosModules.home-manager
-          sops-nix.nixosModules.sops
           niri.nixosModules.niri
           {
             home-manager.useGlobalPkgs = true;
