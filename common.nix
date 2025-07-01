@@ -3,7 +3,6 @@
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  networking.networkmanager.enable = true;
   networking.useDHCP = true;
   networking.domain = lib.mkDefault "homelab.thenextusername.xyz";
   networking.firewall.enable = true;
