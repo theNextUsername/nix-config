@@ -10,7 +10,6 @@
       ./hardware-configuration.nix
     ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "steam"
     "steam-original"
@@ -22,21 +21,14 @@
     enable = true;
     remotePlay.openFirewall = true;
   };
-  #programs.hyprland.enable = true;
-  #programs.hyprland.withUWSM = true;
-  #programs.hyprland.xwayland.enable = true;
-  #programs.uwsm.enable = true;
 
   hardware.opentabletdriver.enable = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  time.timeZone = "America/Indiana/Indianapolis";
-
   users.users.tnu = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "wireshark" ];
+    extraGroups = [ "wireshark" ];
   };
 
   programs.direnv = {
@@ -53,7 +45,11 @@
     enable = true;
     package = pkgs.niri;
   };
+  
+  # Automatically enabled by niri
   services.gnome.gnome-keyring.enable = lib.mkForce false;
+
+  # enable auto-unlock of kwallet taken from the plasma.nix module in nixpkgs
   security.pam.services = {
     swaylock = {};
     login.kwallet = {
@@ -78,14 +74,13 @@
     pulse.enable = true;
   };
 
-  # services.desktopManager.plasma6.enable = true;
   services.libinput.enable = true;
   services.fprintd.enable = true;
   services.flatpak.enable = true;
-
+  services.sshd.enable = false;
+  
   environment.systemPackages = with pkgs; [
     qt6.qtwayland
-    vim
     wget
     gitFull
     nil
@@ -101,30 +96,13 @@
     wl-clipboard-rs
     xwayland-satellite
     ssh-to-age
+    proxmox-backup-client
   ];
 
   environment.variables = {
     PBS_REPOSITORY = "aster@pbs@pve-cluster04:backup-pool";
   };
 
-  # This option defines the first version of NixOS you have installed on this particular machine,
-  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
-  #
-  # Most users should NEVER change this value after the initial install, for any reason,
-  # even if you've upgraded your system to a new NixOS release.
-  #
-  # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
-  # so changing it will NOT upgrade your system - see https://nixos.org/manual/nixos/stable/#sec-upgrading for how
-  # to actually do that.
-  #
-  # This value being lower than the current NixOS release does NOT mean your system is
-  # out of date, out of support, or vulnerable.
-  #
-  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
-  # and migrated your data accordingly.
-  #
-  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.11"; # Did you read the comment?
-
 }
 

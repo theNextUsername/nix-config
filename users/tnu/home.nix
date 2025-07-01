@@ -3,7 +3,6 @@
 {
   imports = [ ./waybar.nix ./niri.nix ];
   home.username = "tnu";
-  home.homeDirectory = "/home/tnu";
   home.sessionVariables = {
     EDITOR = "hx";
     BROWSER = "librewolf";
