@@ -3,11 +3,12 @@
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  networking.useDHCP = lib.mkDefault true;
+  networking.networkmanager.enable = true;
+  networking.useDHCP = true;
   networking.domain = lib.mkDefault "homelab.thenextusername.xyz";
-  networking.firewall.enable = lib.mkDefault true;
+  networking.firewall.enable = true;
 
-  time.timeZone = "America/Indiana/Indianapolis";
+  time.timeZone = lib.mkDefault "America/Indiana/Indianapolis";
 
   environment.systemPackages = with pkgs; [
     helix
