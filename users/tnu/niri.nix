@@ -1,5 +1,14 @@
 { config, pkgs, ... }:
-
+let
+  background-package = pkgs.stdenvNoCC.mkDerivation {
+    name = "background-image";
+    src = ../../hosts/aster;
+    dontUnpack = true;
+    installPhase = ''
+      cp $src/wallpaper.png $out
+    '';
+  };
+in
 {
     home.packages = with pkgs; [
       swayidle
@@ -22,7 +31,7 @@
       };
       
       Service = {
-        ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i %h/.config/wallpaper.png";
+        ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i ${background-package}";
       };
     };
     services.mako = {
