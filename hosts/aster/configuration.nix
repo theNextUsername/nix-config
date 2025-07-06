@@ -46,6 +46,8 @@
     package = pkgs.niri;
   };
   
+  services.udisks2.enable = true;
+
   # Automatically enabled by niri
   services.gnome.gnome-keyring.enable = lib.mkForce false;
 

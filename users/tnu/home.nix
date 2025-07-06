@@ -122,6 +122,15 @@
 
   services.kdeconnect.enable = true;
 
+  services.udiskie = {
+    enable = true;
+    settings = {
+      program_options = {
+        file_manager = "${pkgs.alacritty}/bin/alacritty -e ${pkgs.nnn}/bin/nnn -eE";
+      };
+    };
+  };
+
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
