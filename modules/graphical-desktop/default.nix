@@ -1,6 +1,10 @@
 { pkgs, lib, config, ... }:
 
 {
+  imports = [
+    ./sddm.nix
+  ];
+
   programs.firefox = {
     enable = true;
     package = pkgs.librewolf;
@@ -58,3 +62,4 @@
     proxmox-backup-client
   ];
 }
+

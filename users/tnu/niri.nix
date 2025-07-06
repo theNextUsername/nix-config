@@ -22,7 +22,7 @@
       };
       
       Service = {
-        ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i ${../../hosts/aster/wallpaper.png}";
+        ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i ${config.stylix.image}";
       };
     };
     services.mako = {

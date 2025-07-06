@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, config, ...}:
 {
   services.displayManager.sddm = {
     enable = true;
@@ -9,7 +9,7 @@
   environment.systemPackages = [
     (pkgs.where-is-my-sddm-theme.override {
       themeConfig.General = {
-        background = "${./wallpaper.png}";
+        background = "${config.stylix.image}";
         backgroundMode = "aspect";
         passwordInputCursorVisible = false;
         showSessionsByDefault = true;

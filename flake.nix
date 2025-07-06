@@ -25,7 +25,7 @@
         system = "x86_64-linux";
         modules = [
           ./modules/common.nix
-          ./modules/graphical-desktop.nix
+          ./modules/graphical-desktop
           ./hosts/aster
           stylix.nixosModules.stylix
           nixos-hardware.nixosModules.framework-13th-gen-intel
@@ -44,7 +44,7 @@
         system = "x86_64-linux";
         modules = [
           ./modules/common.nix
-          ./modules/graphical-desktop.nix
+          ./modules/graphical-desktop
           ./hosts/sunflower
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
