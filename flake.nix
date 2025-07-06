@@ -24,7 +24,8 @@
       aster = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./common.nix
+          ./modules/common.nix
+          ./modules/graphical-desktop.nix
           ./hosts/aster
           stylix.nixosModules.stylix
           nixos-hardware.nixosModules.framework-13th-gen-intel
@@ -39,17 +40,35 @@
           }
         ];
       };
+      sunflower = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./modules/common.nix
+          ./modules/graphical-desktop.nix
+          ./hosts/sunflower
+          stylix.nixosModules.stylix
+          home-manager.nixosModules.home-manager
+          niri.nixosModules.niri
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.extraSpecialArgs = inputs;
+            home-manager.users.tnu = import ./users/tnu/home.nix;
+          }
+        ];
+      };
       tritoma = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./common.nix
+          ./modules/common.nix
           ./hosts/tritoma
         ];
       };
       blossom = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./common.nix
+          ./modules/common.nix
           ./hosts/blossom
         ];
       };

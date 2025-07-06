@@ -31,74 +31,16 @@
     extraGroups = [ "wireshark" ];
   };
 
+  programs.wireshark.enable = true;
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
   };
-  programs.firefox = {
-    enable = true;
-    package = pkgs.librewolf;
-  };
-  programs.wireshark.enable = true;
-  programs.nm-applet.enable = true;
-  programs.niri = {
-    enable = true;
-    package = pkgs.niri;
-  };
-  
-  services.udisks2.enable = true;
-
-  # Automatically enabled by niri
-  services.gnome.gnome-keyring.enable = lib.mkForce false;
-
-  # enable auto-unlock of kwallet taken from the plasma.nix module in nixpkgs
-  security.pam.services = {
-    swaylock = {};
-    login.kwallet = {
-      enable = true;
-      package = pkgs.kdePackages.kwallet-pam;
-    };
-    kde = {
-      allowNullPassword = false;
-      kwallet = {
-        enable = true;
-        package = pkgs.kdePackages.kwallet-pam;
-      };
-    };
-    kde-fingerprint = lib.mkIf config.services.fprintd.enable { fprintAuth = true; };
-    kde-smartcard = lib.mkIf config.security.pam.p11.enable { p11Auth = true; };
-  };
-
-  services.printing.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
-
-  services.libinput.enable = true;
   services.fprintd.enable = true;
-  services.flatpak.enable = true;
-  services.sshd.enable = false;
+  services.openssh.enable = false;
   
   environment.systemPackages = with pkgs; [
-    qt6.qtwayland
-    wget
-    gitFull
-    nil
-    bash-language-server
-    wireguard-tools
-    libreoffice-qt6-fresh
-    hunspell
-    hunspellDicts.en_US
     flatpak-builder
-    thunderbird
-    proxmox-backup-client
-    ciscoPacketTracer8
-    wl-clipboard-rs
-    xwayland-satellite
-    ssh-to-age
-    proxmox-backup-client
   ];
 
   environment.variables = {
