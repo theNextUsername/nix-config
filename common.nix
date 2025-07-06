@@ -14,7 +14,7 @@
     git
   ];
 
-  services.sshd.enable = lib.mkDefault true;
+  services.openssh.enable = lib.mkDefault true;
 
   users.users.tnu = {
     isNormalUser = true;
