@@ -5,11 +5,13 @@
   home.username = "tnu";
   home.sessionVariables = {
     EDITOR = "hx";
+    VISUAL = "ewrap";
     BROWSER = "librewolf";
     TERMINAL = "alacritty";
   };
   home.shellAliases = {
     signal-desktop = "signal-desktop --password-store=kwallet6";
+    nnn = "nnn -eE";
   };
   home.packages = with pkgs; [
     neofetch
@@ -50,6 +52,13 @@
     networkmanagerapplet
     rclone
     age
+    (writeShellApplication {
+      name = "ewrap";
+      runtimeInputs = [ alacritty helix ];
+      text = ''
+        alacritty -e hx "$*" &
+      '';
+    })
   ]
   ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
