@@ -45,7 +45,7 @@
     programs.fuzzel.enable = true;
     programs.niri = {
         settings = {
-            overview.backdrop-color = "#164f4a";
+            overview.backdrop-color = config.lib.stylix.colors.base00;
             hotkey-overlay.skip-at-startup = true;
             environment = {
             NIXOS_OZONE_WL = "1";
