@@ -45,9 +45,9 @@
     programs.fuzzel.enable = true;
     programs.niri = {
         settings = {
-            overview.backdrop-color = config.lib.stylix.colors.base00;
-            hotkey-overlay.skip-at-startup = true;
-            environment = {
+          overview.backdrop-color = config.lib.stylix.colors.base00;
+          hotkey-overlay.skip-at-startup = true;
+          environment = {
             NIXOS_OZONE_WL = "1";
             DISPLAY = ":0";
             QT_QPA_PLATFORM = "wayland";
@@ -56,6 +56,7 @@
             { command = [ "xwayland-satellite" ]; }
             { command = [ "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init" ]; }
           ];
+          screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
           prefer-no-csd = true;
           outputs."DP-1" = {
             position = {
@@ -69,6 +70,15 @@
               y = 0;
             };
           };
+          window-rules = [
+            {
+              matches = [
+                { is-active = false; }
+              ];
+              opacity = 0.75;
+              draw-border-with-background = false;
+            }
+          ];
           binds = with config.lib.niri.actions; {
             "Mod+Shift+Slash".action = show-hotkey-overlay;
             "XF86AudioRaiseVolume" = {
@@ -240,7 +250,8 @@
             }; 
             "Mod+Shift+E".action = quit; 
             "Ctrl+Alt+Delete".action = quit; 
-            "Mod+Shift+P".action = power-off-monitors; 
+            "Mod+Shift+P".action = power-off-monitors;
+            "Mod+Shift+S".action = screenshot; 
             "Mod+Shift+L".action.spawn = "swaylock";
             "Mod+B".action.spawn = "librewolf";              
             "Mod+T".action.spawn = "alacritty";
