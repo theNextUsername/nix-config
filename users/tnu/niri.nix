@@ -45,7 +45,7 @@
     programs.fuzzel.enable = true;
     programs.niri = {
         settings = {
-            overview.backdrop-color = "#164f4a";
+            overview.backdrop-color = config.lib.stylix.colors.base00;
             hotkey-overlay.skip-at-startup = true;
             environment = {
             NIXOS_OZONE_WL = "1";
@@ -57,6 +57,18 @@
             { command = [ "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init" ]; }
           ];
           prefer-no-csd = true;
+          outputs."DP-1" = {
+            position = {
+              x = 1920;
+              y = 130;
+            };
+          };
+          outputs."HDMI-A-1" = {
+            position = {
+              x = 0;
+              y = 0;
+            };
+          };
           binds = with config.lib.niri.actions; {
             "Mod+Shift+Slash".action = show-hotkey-overlay;
             "XF86AudioRaiseVolume" = {
