@@ -1,9 +1,8 @@
 { ... }:
 
 {
-  stylix = {
-    enable = true;
-    base16Scheme = {
+  thenextusername.stylix = {
+    theme = {
       base00 = "061f1d";
       base01 = "164f4a";
       base02 = "347662";
@@ -24,7 +23,6 @@
       scheme = "Oneshot Maize";
       slug = "maize";
     };
-    image = ./wallpaper.png;
-    homeManagerIntegration.followSystem = true;
+    wallpaper = ./wallpaper.png;
   };
 }
