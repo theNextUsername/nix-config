@@ -53,7 +53,7 @@ let
         l = (min + max) / 2;
         h_final = (
           if (deg_h + rotation < 0) then
-            (h + 360 + rotation)
+            (deg_h + 360 + rotation)
           else
             (deg_h + rotation)
           ) / 360;
@@ -62,11 +62,23 @@ let
         temp_r =
           if (h_final + (1.0 / 3.0) > 1) then
             (h_final + (1.0 / 3.0) - 1)
+          else if (h_final + (1.0 / 3.0) < 0) then
+            (h_final + (1.0 / 3.0) + 1)
           else
             (h_final + (1.0 / 3.0))
           ;
-        temp_g = h_final;
-        temp_b = if (h_final - (1.0 / 3.0) < 0) then
+        temp_g =
+          if (h_final  > 1) then
+            (h_final - 1)
+          else if (h_final < 0) then
+            (h_final + 1)
+          else
+            (h_final)
+          ;
+        temp_b =
+          if (h_final - (1.0 / 3.0) > 1) then
+            (h_final - (1.0 / 3.0) - 1)
+          else if (h_final - (1.0 / 3.0) < 0) then
             (h_final - (1.0 / 3.0) + 1)
           else
             (h_final - (1.0 / 3.0))

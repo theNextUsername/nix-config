@@ -1,5 +1,5 @@
 { ... }:
 
 {
-  thenextusername.stylix.color-rotation = 90;
+  thenextusername.stylix.color-rotation = 270;
 }
