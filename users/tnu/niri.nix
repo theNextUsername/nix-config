@@ -47,6 +47,16 @@
         settings = {
           overview.backdrop-color = config.lib.stylix.colors.base00;
           hotkey-overlay.skip-at-startup = true;
+          input = {
+            keyboard = {
+              track-layout = "window";
+              xkb = {
+                layout = "us,us";
+                variant = "colemak,";
+                options = "grp:shifts_toggle";
+              };
+            };
+          };
           environment = {
             NIXOS_OZONE_WL = "1";
             DISPLAY = ":0";
