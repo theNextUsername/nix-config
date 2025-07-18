@@ -5,5 +5,6 @@
     ./networking.nix
     ./stylix.nix
     ./syncthing.nix
+    ./kmonad.nix
   ];
 }

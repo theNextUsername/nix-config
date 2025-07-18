@@ -28,7 +28,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   users.users.tnu = {
-    extraGroups = [ "wireshark" ];
+    extraGroups = [ "wireshark" "uinput" "input" ];
   };
 
   programs.wireshark.enable = true;
