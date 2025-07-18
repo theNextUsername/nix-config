@@ -15,7 +15,7 @@
   };
   home.packages = with pkgs; [
     neofetch
-    nnn
+    (nnn.override { extraMakeFlags = [ "O_COLEMAK=1" ]; })
     zip
     xz
     unzip
