@@ -56,6 +56,12 @@
             { command = [ "xwayland-satellite" ]; }
             { command = [ "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init" ]; }
           ];
+          input = {
+            keyboard.xkb = {
+              layout = "us";
+              options = "compose:rctrl";
+            };
+          };
           screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
           prefer-no-csd = true;
           outputs."DP-1" = {
@@ -164,18 +170,10 @@
             "Mod+Down".action = focus-window-down;
             "Mod+Up".action = focus-window-up;
             "Mod+Right".action = focus-column-right;
-            "Mod+H".action = focus-column-left;
-            "Mod+N".action = focus-window-down;
-            "Mod+E".action = focus-window-up;
-            "Mod+I".action = focus-column-right;
             "Mod+Ctrl+Left".action = move-column-left;
             "Mod+Ctrl+Down".action = move-window-down;
             "Mod+Ctrl+Up".action = move-window-up;
             "Mod+Ctrl+Right".action = move-column-right;
-            "Mod+Ctrl+H".action = move-column-left;
-            "Mod+Ctrl+N".action = move-window-down;
-            "Mod+Ctrl+E".action = move-window-up;
-            "Mod+Ctrl+I".action = move-column-right;
             "Mod+Home".action = focus-column-first;
             "Mod+End".action = focus-column-last;
             "Mod+Ctrl+Home".action = move-column-to-first;
@@ -188,18 +186,10 @@
             "Mod+Shift+Ctrl+Down".action = move-column-to-monitor-down;
             "Mod+Shift+Ctrl+Up".action = move-column-to-monitor-up;
             "Mod+Shift+Ctrl+Right".action = move-column-to-monitor-right;
-            "Mod+Shift+Ctrl+H".action = move-column-to-monitor-left;
-            "Mod+Shift+Ctrl+N".action = move-column-to-monitor-down;
-            "Mod+Shift+Ctrl+E".action = move-column-to-monitor-up;
-            "Mod+Shift+Ctrl+I".action = move-column-to-monitor-right;
             "Mod+Page_Down".action = focus-workspace-down;
             "Mod+Page_Up".action = focus-workspace-up;
-            "Mod+L".action = focus-workspace-down;
-            "Mod+U".action = focus-workspace-up;
             "Mod+Ctrl+Page_Down".action = move-column-to-workspace-down;
             "Mod+Ctrl+Page_Up".action = move-column-to-workspace-up;
-            "Mod+Ctrl+L".action = move-column-to-workspace-down;
-            "Mod+Ctrl+U".action = move-column-to-workspace-up;
             "Mod+WheelScrollRight".action = focus-column-right; 
             "Mod+WheelScrollLeft".action = focus-column-left; 
             "Mod+Ctrl+WheelScrollRight".action =  move-column-right; 
@@ -252,7 +242,7 @@
             "Ctrl+Alt+Delete".action = quit; 
             "Mod+Shift+P".action = power-off-monitors;
             "Mod+Shift+S".action = screenshot; 
-            "Mod+Shift+L".action.spawn = "swaylock";
+            "Mod+L".action.spawn = "swaylock";
             "Mod+B".action.spawn = "librewolf";              
             "Mod+T".action.spawn = "alacritty";
             "Alt+Space".action.spawn = "fuzzel";
