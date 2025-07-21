@@ -61,7 +61,7 @@
   ];
 
   environment.variables = {
-    PBS_REPOSITORY = "aster@pbs@pve-cluster04:backup-pool";
+    PBS_REPOSITORY = "aster@pbs@bulb:backup-pool";
   };
 
   system.stateVersion = "24.11"; # Did you read the comment?
