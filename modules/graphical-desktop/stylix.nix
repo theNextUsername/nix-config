@@ -25,7 +25,7 @@ let
     scheme = "Oneshot default";
     slug = "oneshot";
   };
-  rotateColor = { hexColor, rotation ? 0 }:
+  rotateColor = { hexColor, rotation ? 0, scale ? 1 }:
     with builtins;
     let
       colors = rec {
@@ -50,7 +50,7 @@ let
           else
             (max - min) / (2.0 - max - min)
           ;
-        l = (min + max) / 2;
+        l = ((min + max) / 2) * scale;
         h_final = (
           if (deg_h + rotation < 0) then
             (deg_h + 360 + rotation)
@@ -145,6 +145,11 @@ in
       default = 0;
       description = "degrees to rotate the hue of the theme";
     };
+
+    color-scale = mkOption {
+      type = types.float;
+      default = 1;
+    };
   };
 
   config.stylix = let
@@ -157,22 +162,22 @@ in
       c = cfg.theme;
     in
     {
-      base00 = rotateColor { hexColor = c.base00; rotation = cfg.color-rotation; };
-      base01 = rotateColor { hexColor = c.base01; rotation = cfg.color-rotation; };
-      base02 = rotateColor { hexColor = c.base02; rotation = cfg.color-rotation; };
-      base03 = rotateColor { hexColor = c.base03; rotation = cfg.color-rotation; };
-      base04 = rotateColor { hexColor = c.base04; rotation = cfg.color-rotation; };
-      base05 = rotateColor { hexColor = c.base05; rotation = cfg.color-rotation; };
-      base06 = rotateColor { hexColor = c.base06; rotation = cfg.color-rotation; };
-      base07 = rotateColor { hexColor = c.base07; rotation = cfg.color-rotation; };
-      base08 = rotateColor { hexColor = c.base08; rotation = cfg.color-rotation; };
-      base09 = rotateColor { hexColor = c.base09; rotation = cfg.color-rotation; };
-      base0A = rotateColor { hexColor = c.base0A; rotation = cfg.color-rotation; };
-      base0B = rotateColor { hexColor = c.base0B; rotation = cfg.color-rotation; };
-      base0C = rotateColor { hexColor = c.base0C; rotation = cfg.color-rotation; };
-      base0D = rotateColor { hexColor = c.base0D; rotation = cfg.color-rotation; };
-      base0E = rotateColor { hexColor = c.base0E; rotation = cfg.color-rotation; };
-      base0F = rotateColor { hexColor = c.base0F; rotation = cfg.color-rotation; };
+      base00 = rotateColor { hexColor = c.base00; rotation = cfg.color-rotation; scale = cfg.color-scale; };
+      base01 = rotateColor { hexColor = c.base01; rotation = cfg.color-rotation; scale = cfg.color-scale; };
+      base02 = rotateColor { hexColor = c.base02; rotation = cfg.color-rotation; scale = cfg.color-scale; };
+      base03 = rotateColor { hexColor = c.base03; rotation = cfg.color-rotation; scale = cfg.color-scale; };
+      base04 = rotateColor { hexColor = c.base04; rotation = cfg.color-rotation; scale = cfg.color-scale; };
+      base05 = rotateColor { hexColor = c.base05; rotation = cfg.color-rotation; scale = cfg.color-scale; };
+      base06 = rotateColor { hexColor = c.base06; rotation = cfg.color-rotation; scale = cfg.color-scale; };
+      base07 = rotateColor { hexColor = c.base07; rotation = cfg.color-rotation; scale = cfg.color-scale; };
+      base08 = rotateColor { hexColor = c.base08; rotation = cfg.color-rotation; scale = cfg.color-scale; };
+      base09 = rotateColor { hexColor = c.base09; rotation = cfg.color-rotation; scale = cfg.color-scale; };
+      base0A = rotateColor { hexColor = c.base0A; rotation = cfg.color-rotation; scale = cfg.color-scale; };
+      base0B = rotateColor { hexColor = c.base0B; rotation = cfg.color-rotation; scale = cfg.color-scale; };
+      base0C = rotateColor { hexColor = c.base0C; rotation = cfg.color-rotation; scale = cfg.color-scale; };
+      base0D = rotateColor { hexColor = c.base0D; rotation = cfg.color-rotation; scale = cfg.color-scale; };
+      base0E = rotateColor { hexColor = c.base0E; rotation = cfg.color-rotation; scale = cfg.color-scale; };
+      base0F = rotateColor { hexColor = c.base0F; rotation = cfg.color-rotation; scale = cfg.color-scale; };
       author = c.author;
       scheme = "${c.scheme}-rot${toString cfg.color-rotation}";
       slug = "${c.slug}rot${toString cfg.color-rotation}";
