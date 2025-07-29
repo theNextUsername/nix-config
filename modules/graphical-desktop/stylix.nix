@@ -148,7 +148,7 @@ in
 
     color-scale = mkOption {
       type = types.float;
-      default = 1;
+      default = 1.0;
     };
   };
 
