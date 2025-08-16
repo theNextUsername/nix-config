@@ -118,6 +118,12 @@
       "privacy.clearOnShutdown.history" = false;
       "privacy.clearOnShutdown.cookies" = true;
     };
+    profiles."u98pz70j.default".extensions.force = true;
+  };
+
+  stylix.targets.librewolf = {
+    colorTheme.enable = true;
+    profileNames = [ "u98pz70j.default" ];
   };
 
   services.kdeconnect.enable = true;
