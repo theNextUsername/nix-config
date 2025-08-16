@@ -23,7 +23,7 @@
           )
           
           (defalias
-            ext  (layer-switch extend) ;; Bind 'ext' to the Extend Layer
+            ext  (tap-next-press (layer-switch extend) (layer-toggle extend)) ;; Bind 'ext' to the Extend Layer
             col  (layer-switch colemak-dh)
           )
 
@@ -42,9 +42,9 @@
             esc     f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12   del
             grv      1    2    3    4    5    6    7    8    9    0    -    =    bspc
             tab      q    w    f    p    b    j    l    u    y    ;    [    ]    \\
-            bspc     a    r    s    t    g    m    n    e    i    o    '    ret
+            lctl    a    r    s    t    g    m    n    e    i    o    '    ret
             lsft       x    c    d    v    z    k    h    ,    .    /    rsft
-            lctl     lmet lalt           spc            @ext rctl
+            bspc     lmet lalt           spc            @ext rctl
           )
 
           (deflayer extend
