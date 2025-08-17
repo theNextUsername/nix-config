@@ -14,7 +14,7 @@
     nnn = "nnn -eE";
   };
   home.packages = with pkgs; [
-    neofetch
+    fastfetch
     (nnn.override { extraMakeFlags = [ "O_COLEMAK=1" ]; })
     zip
     xz

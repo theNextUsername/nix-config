@@ -41,7 +41,9 @@
   services.printing.enable = true;
   services.pipewire = {
     enable = true;
+    alsa.enable = true;
     pulse.enable = true;
+    wireplumber.enable = true;
   };
   services.libinput.enable = true;
   services.flatpak.enable = true;

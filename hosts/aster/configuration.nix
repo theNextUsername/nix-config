@@ -70,6 +70,7 @@
   
   environment.systemPackages = with pkgs; [
     flatpak-builder
+    pavucontrol
   ];
 
   environment.variables = {

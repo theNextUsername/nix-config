@@ -157,6 +157,7 @@ in
     
   in {
     enable = true;
+    polarity = "dark";
     base16Scheme =
     let
       c = cfg.theme;
