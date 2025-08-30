@@ -18,7 +18,7 @@
         };
         pulseaudio = {
           format = "{icon}";
-          fomat-muted = "󰝟";
+          format-muted = "󰝟";
           format-icons = ["󰕿" "󰖀" "󰕾"];
           tooltip-format = "{volume}%";
         };
