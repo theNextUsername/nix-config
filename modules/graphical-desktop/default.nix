@@ -55,7 +55,7 @@
     nil
     bash-language-server
     wireguard-tools
-    libreoffice-qt6-fresh
+    libreoffice-still
     hunspell
     hunspellDicts.en_US
     thunderbird
