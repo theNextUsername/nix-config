@@ -53,8 +53,9 @@
             QT_QPA_PLATFORM = "wayland";
           };
           spawn-at-startup = [
-            { command = [ "xwayland-satellite" ]; }
-            { command = [ "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init" ]; }
+            { argv = [ "xwayland-satellite" ]; }
+            { argv = [ "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init" ]; }
+            { argv = [ "protonmail-bridge-gui" "-n" ]; }
           ];
           input = {
             keyboard.xkb = {
@@ -241,7 +242,7 @@
             "Mod+Shift+E".action = quit; 
             "Ctrl+Alt+Delete".action = quit; 
             "Mod+Shift+P".action = power-off-monitors;
-            "Mod+Shift+S".action = screenshot; 
+            "Mod+Shift+S".action.screenshot = []; 
             "Mod+L".action.spawn = "swaylock";
             "Mod+B".action.spawn = "librewolf";              
             "Mod+T".action.spawn = "alacritty";

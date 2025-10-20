@@ -38,7 +38,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   users.users.tnu = {
-    extraGroups = [ "wireshark" "uinput" "input" ];
+    # uinput and input are for proper kmonad functioning, dialout is for access to serial devices
+    extraGroups = [ "wireshark" "uinput" "input" "dialout" ];
   };
 
   programs.wireshark.enable = true;
