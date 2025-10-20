@@ -8,21 +8,74 @@
       playerctl
       libnotify
       xwayland-satellite
+      protonmail-bridge
     ];
-    systemd.user.services.swaybg = {
-      Unit = {
-        Description = "Set window manager background";
-        PartOf = "graphical-session.target";
-        After = "graphical-session.target niri.service";
-        Requisite = "graphical-session.target";
-      };
+    systemd.user.services = {
+      swaybg = {
+        Unit = {
+          Description = "Set window manager background";
+          PartOf = "graphical-session.target";
+          After = "graphical-session.target niri.service";
+          Requisite = "graphical-session.target";
+        };
       
-      Install= {
-        WantedBy = [ "niri.service" ];
-      };
+        Install= {
+          WantedBy = [ "niri.service" ];
+        };
       
-      Service = {
-        ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i ${config.stylix.image}";
+        Service = {
+          ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i ${config.stylix.image}";
+        };
+      };
+      xwayland-satellite = {
+        Unit = {
+          Description = "Set window manager background";
+          PartOf = "graphical-session.target";
+          After = "graphical-session.target niri.service";
+          Requisite = "graphical-session.target";
+        };
+
+        Install = {
+          WantedBy = [ "niri.service" ];
+        };
+
+        Service = {
+          ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
+        };
+      };
+      kwalletd-init = {
+        Unit = {
+          Description = "Start kwallet keyring";
+          PartOf = "graphical-session.target";
+          After = "graphical-session.target niri.service";
+          Requisite = "graphical-session.target";
+        };
+
+        Install = {
+          WantedBy = [ "niri.service" ];
+        };
+
+        Service = {
+          ExecStart = "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init";
+          Type = "oneshot";
+          RemainAfterExit = "yes";
+        };
+      };
+      proton-mail-bridge = {
+        Unit = {
+          Description = "Set window manager background";
+          PartOf = "graphical-session.target";
+          After = "graphical-session.target niri.service kwalletd-init.service";
+          Requisite = "graphical-session.target";
+        };
+
+        Install = {
+          WantedBy = [ "niri.service" ];
+        };
+
+        Service = {
+          ExecStart = "${pkgs.protonmail-bridge}/bin/protonmail-bridge -n";
+        };
       };
     };
     services.mako = {
@@ -52,11 +105,6 @@
             DISPLAY = ":0";
             QT_QPA_PLATFORM = "wayland";
           };
-          spawn-at-startup = [
-            { argv = [ "xwayland-satellite" ]; }
-            { argv = [ "${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init" ]; }
-            { argv = [ "protonmail-bridge-gui" "-n" ]; }
-          ];
           input = {
             keyboard.xkb = {
               layout = "us";
