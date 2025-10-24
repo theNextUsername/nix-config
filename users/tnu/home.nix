@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   imports = [ ./waybar.nix ./niri.nix ];
@@ -83,6 +83,19 @@
       "x-scheme-handler/about" = "librewolf.desktop";
       "x-scheme-handler/unknown" = "librewolf.desktop";
     };
+  };
+
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+    desktop = "${config.home.homeDirectory}/main/desktop";
+    documents = "${config.home.homeDirectory}/main/documents";
+    download = "${config.home.homeDirectory}/tmp";
+    music = "${config.home.homeDirectory}/main/music";
+    pictures = "${config.home.homeDirectory}/main/pictures";
+    publicShare = "${config.home.homeDirectory}/main/public";
+    templates = "${config.home.homeDirectory}/main/templates";
+    videos = "${config.home.homeDirectory}/main/videos";
   };
   
   fonts.fontconfig.enable = true;
