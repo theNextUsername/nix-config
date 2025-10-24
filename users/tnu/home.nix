@@ -118,6 +118,8 @@
       "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
       "privacy.clearOnShutdown.history" = false;
       "privacy.clearOnShutdown.cookies" = true;
+      "browser.search.defaultenginename" = "StartPage";
+      "browser.search.order.1" = "StartPage";
     };
     policies = {
       DefaultDownloadDirectory = "\${home}/tmp";
