@@ -32,7 +32,6 @@
     git
     git-credential-manager
     remmina
-    protonmail-bridge-gui
     kitty
     hyprpolkitagent
     krita
@@ -115,8 +114,23 @@
     settings = {
       "webgl.disabled" = false;
       "privacy.resistFingerprinting" = false;
+      "privacy.fingerprintingProtection" = true;
+      "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
       "privacy.clearOnShutdown.history" = false;
       "privacy.clearOnShutdown.cookies" = true;
+    };
+    policies = {
+      DefaultDownloadDirectory = "\${home}/tmp";
+      ExtensionSettings =  {
+        "uBlock0@raymondhill.net" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        "78272b6fa58f4a1abaac99321d503a20@proton.me" = {
+          install_url = "http://addons.mozilla.org/firefox/downloads/latest/proton-pass/latest.xpi";
+          installation_mode = "force_installed";
+        };
+      };
     };
     profiles."u98pz70j.default".extensions.force = true;
   };
