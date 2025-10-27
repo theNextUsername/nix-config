@@ -96,6 +96,12 @@
     publicShare = "${config.home.homeDirectory}/main/public";
     templates = "${config.home.homeDirectory}/main/templates";
     videos = "${config.home.homeDirectory}/main/videos";
+    extraConfig = {
+      XDG_TAG_DIR = "${config.home.homeDirectory}/tags";
+      XDG_MOUNT_DIR = "${config.home.homeDirectory}/mnt";
+      XDG_STORE_DIR = "${config.home.homeDirectory}/store";
+      XDG_MISC_DIR = "${config.home.homeDirectory}/main/misc";
+    };
   };
   
   fonts.fontconfig.enable = true;

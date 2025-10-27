@@ -111,7 +111,7 @@
               options = "compose:rctrl";
             };
           };
-          screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
+          screenshot-path = "${config.xdg.userDirs.pictures}/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
           prefer-no-csd = true;
           outputs."DP-1" = {
             position = {
