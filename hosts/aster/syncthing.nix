@@ -5,22 +5,36 @@
         enable = true;
         group = "users";
         user = "tnu";
-        dataDir = "/home/tnu/Main";
-        configDir = "/home/tnu/Documents/.config/syncthing";
+        dataDir = "/home/tnu/";
+        configDir = "/home/tnu/.config/syncthing";
         overrideDevices = true;
         overrideFolders = true;
         settings = {
             devices = {
-                "windows11-desktop02" = { id = "4FCIEXC-D7IPWPT-N7ETF3K-73NWFJG-7IAXLLV-4AU4CDH-OEBMOTD-VZHCDQP"; };
+                "pixel" = { id = "NCP72H7-HSL2D5H-ME55OZB-F2FB2DL-QDYZBKK-ESZTUSF-XLZ4PEE-AGXSTAY"; };
             };
-            folders = {
-                "Main" = {
-                    path = "/home/tnu/Main";
-                    devices = [ "windows11-desktop02" ];
-                    versioning = {
-                        type = "simple";
-                        params.keep = "10";
-                    };
+            folders = let
+                defaultVersioning = {
+                    type = "simple";
+                    params.keep = "10";
+                };
+            in {
+                # "main" = {
+                #     path = "/home/tnu/main";
+                #     devices = [ "pixel" ];
+                #     versioning = defaultVersioning;
+                #     ignorePerms = false;
+                # };
+                "store" = {
+                    path = "/home/tnu/store";
+                    devices = [ "pixel" ];
+                    versioning = defaultVersioning;
+                    ignorePerms = false;
+                };
+                "tags" = {
+                    path = "/home/tnu/tags";
+                    devices = [ "pixel" ];
+                    versioning = defaultVersioning;
                     ignorePerms = false;
                 };
             };
