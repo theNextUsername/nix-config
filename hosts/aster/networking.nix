@@ -9,4 +9,7 @@
     networking.firewall.allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
     networking.firewall.allowedTCPPorts = [  ];
     networking.firewall.allowedUDPPorts = [ 51820 ];
+    networking.extraHosts = ''
+        10.0.0.1 owntracks.thenextusername.xyz
+    '';
 }
