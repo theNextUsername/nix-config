@@ -119,8 +119,31 @@
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    profileExtra = ''
-      export XDG_DATA_DIRS=$XDG_DATA_DIRS:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share
+    bashrcExtra = ''
+      n ()
+      {
+          [ "''${NNNLVL:-0}" -eq 0 ] || {
+              echo "nnn is already running"
+              return
+          }
+
+          NNN_TMPFILE="''${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+          # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+          # stty start undef
+          # stty stop undef
+          # stty lwrap undef
+          # stty lnext undef
+
+          # The command builtin allows one to alias nnn to n, if desired, without
+          # making an infinitely recursive alias
+          command nnn "$@"
+
+          [ ! -f "$NNN_TMPFILE" ] || {
+              . "$NNN_TMPFILE"
+              rm -f -- "$NNN_TMPFILE" > /dev/null
+          }
+      }      
     '';
   };
 
