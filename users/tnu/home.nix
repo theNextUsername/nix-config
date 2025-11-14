@@ -11,7 +11,7 @@
   };
   home.shellAliases = {
     signal-desktop = "signal-desktop --password-store=kwallet6";
-    nnn = "nnn -eE";
+    nnn = "n -eE";
   };
   home.packages = with pkgs; [
     fastfetch
