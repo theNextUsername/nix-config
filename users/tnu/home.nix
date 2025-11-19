@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, tnutils, ... }:
 
 {
   imports = [ ./waybar.nix ./niri.nix ];
@@ -58,6 +58,10 @@
         alacritty -e hx "$*" &
       '';
     })
+    tnutils.packages.${pkgs.system}.tag
+    tnutils.packages.${pkgs.system}.diary
+    tnutils.packages.${pkgs.system}.housekeep
+    
   ]
   ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
@@ -97,9 +101,9 @@
     templates = "${config.home.homeDirectory}/main/templates";
     videos = "${config.home.homeDirectory}/main/videos";
     extraConfig = {
-      XDG_TAG_DIR = "${config.home.homeDirectory}/tags";
+      TNU_TAG_DIR = "${config.home.homeDirectory}/tags";
       XDG_MOUNT_DIR = "${config.home.homeDirectory}/mnt";
-      XDG_STORE_DIR = "${config.home.homeDirectory}/store";
+      TNU_STORE_DIR = "${config.home.homeDirectory}/store";
       XDG_MISC_DIR = "${config.home.homeDirectory}/main/misc";
     };
   };

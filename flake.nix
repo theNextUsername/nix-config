@@ -9,6 +9,10 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tnutils = {
+      url = "github:theNextUsername/theNextUtils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     stylix = {
       url = "github:nix-community/stylix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";      
@@ -19,7 +23,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, stylix, niri }@inputs: {
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, tnutils, stylix, niri }@inputs: {
     nixosConfigurations = {
       aster = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
