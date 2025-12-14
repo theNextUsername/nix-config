@@ -9,6 +9,7 @@
       libnotify
       xwayland-satellite
       protonmail-bridge
+      kdePackages.kwallet-pam
     ];
     systemd.user.services = {
       swaybg = {

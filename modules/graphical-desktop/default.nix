@@ -34,6 +34,10 @@
     kde-smartcard = lib.mkIf config.security.pam.p11.enable { p11Auth = true; };
   };
 
+  xdg.portal.extraPortals = [
+      pkgs.kdePackages.kwallet
+  ];
+
   # Automatically enabled by niri, disabled to use kwallet instead
   services.gnome.gnome-keyring.enable = lib.mkForce false;
 

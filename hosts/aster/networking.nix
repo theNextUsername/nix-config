@@ -1,7 +1,8 @@
-{ ... }:
+{ pkgs, ... }:
 {
     networking.hostName = "aster";
     networking.networkmanager.enable = true;
+    networking.networkmanager.plugins = [ pkgs.networkmanager-openvpn ];
     networking.networkmanager.dns = "dnsmasq";
 
     networking.firewall.enable = true;
