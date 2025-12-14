@@ -1,5 +1,7 @@
 { pkgs, config, tnutils, ... }:
-
+let
+  tnupkgs = tnutils.packages.${pkgs.stdenv.hostPlatform.system};
+in
 {
   imports = [ ./waybar.nix ./niri.nix ];
   home.username = "tnu";
@@ -58,9 +60,9 @@
         alacritty -e hx "$*" &
       '';
     })
-    tnutils.packages.${pkgs.system}.tag
-    tnutils.packages.${pkgs.system}.diary
-    tnutils.packages.${pkgs.system}.housekeep
+    tnupkgs.tag
+    tnupkgs.diary
+    tnupkgs.housekeep
     
   ]
   ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
@@ -112,12 +114,14 @@
 
   programs.git = {
     enable = true;
-    userName = "theNextUsername";
-    userEmail = "thenextusername@thenextusername.xyz";
-    extraConfig.credential.helper = "manager";
-    extraConfig.credential."https://github.com".username = "theNextUsername";
-    extraConfig.credential.credentialStore = "cache";
-    extraConfig.init.defaultBranch = "main";
+    settings = {
+      user.name = "theNextUsername";
+      user.email = "thenextusername@thenextusername.xyz";
+      credential.helper = "manager";
+      credential."https://github.com".username = "theNextUsername";
+      credential.credentialStore = "cache";
+      init.defaultBranch = "main";
+    };
   };
 
   programs.bash = {

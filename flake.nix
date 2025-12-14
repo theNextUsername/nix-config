@@ -26,7 +26,6 @@
   outputs = { self, nixpkgs, nixos-hardware, home-manager, tnutils, stylix, niri }@inputs: {
     nixosConfigurations = {
       aster = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
         modules = [
           ./modules/common.nix
           ./modules/graphical-desktop
@@ -45,7 +44,6 @@
         ];
       };
       sunflower = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
         modules = [
           ./modules/common.nix
           ./modules/graphical-desktop
@@ -63,14 +61,12 @@
         ];
       };
       tritoma = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
         modules = [
           ./modules/common.nix
           ./hosts/tritoma
         ];
       };
       blossom = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
         modules = [
           ./modules/common.nix
           ./hosts/blossom
