@@ -17,6 +17,7 @@ in
   };
   home.packages = with pkgs; [
     fastfetch
+    btop
     (nnn.override { extraMakeFlags = [ "O_COLEMAK=1" ]; })
     zip
     xz
@@ -39,6 +40,7 @@ in
     krita
     calc
     scrcpy
+    screen
     signal-desktop
     obs-studio
     calc
