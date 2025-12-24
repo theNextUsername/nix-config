@@ -3,7 +3,6 @@
 {
   imports = [
     ./sddm.nix
-    ./stylix.nix
   ];
 
   programs.firefox = {

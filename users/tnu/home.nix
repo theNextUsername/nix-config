@@ -10,10 +10,11 @@ in
     VISUAL = "ewrap";
     BROWSER = "librewolf";
     TERMINAL = "alacritty";
+    NNN_OPTS="eEC";
   };
   home.shellAliases = {
     signal-desktop = "signal-desktop --password-store=kwallet6";
-    nnn = "n -eE";
+    nnn = "n";
   };
   home.packages = with pkgs; [
     fastfetch

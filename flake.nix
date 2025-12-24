@@ -46,6 +46,7 @@
       sunflower = nixpkgs.lib.nixosSystem {
         modules = [
           ./modules/common.nix
+          ./modules/stylix.nix
           ./modules/graphical-desktop
           ./hosts/sunflower
           stylix.nixosModules.stylix
