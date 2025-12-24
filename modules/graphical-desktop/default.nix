@@ -40,6 +40,9 @@
   # Automatically enabled by niri, disabled to use kwallet instead
   services.gnome.gnome-keyring.enable = lib.mkForce false;
 
+  # Cannot figure out how to replace this for Chromium apps
+  services.dbus.packages = [ pkgs.nautilus ];
+
   services.udisks2.enable = true;
   services.printing.enable = true;
   services.pipewire = {
