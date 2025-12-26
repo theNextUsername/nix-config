@@ -9,6 +9,10 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-cli = {
+      url = "github:nix-community/nixos-cli/";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     tnutils = {
       url = "github:theNextUsername/theNextUtils";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,7 +27,16 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, tnutils, stylix, niri }@inputs: {
+  outputs = {
+    self,
+    nixpkgs,
+    nixos-hardware,
+    home-manager,
+    nixos-cli,
+    tnutils,
+    stylix,
+    niri
+  } @inputs: {
     nixosConfigurations = {
       aster = nixpkgs.lib.nixosSystem {
         modules = [
@@ -33,6 +46,7 @@
           stylix.nixosModules.stylix
           nixos-hardware.nixosModules.framework-13th-gen-intel
           home-manager.nixosModules.home-manager
+          nixos-cli.nixosModules.nixos-cli
           niri.nixosModules.niri
           {
             home-manager.useGlobalPkgs = true;
