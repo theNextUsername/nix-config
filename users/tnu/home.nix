@@ -51,6 +51,7 @@ in
     vscode-langservers-extracted
     ungoogled-chromium
     tor-browser
+    tlrc
     protonvpn-gui
     monero-gui
     networkmanagerapplet
