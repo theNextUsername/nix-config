@@ -65,6 +65,7 @@
           ./hosts/sunflower
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
+          nixos-cli.nixosModules.nixos-cli
           niri.nixosModules.niri
           {
             home-manager.useGlobalPkgs = true;
