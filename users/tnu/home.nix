@@ -166,14 +166,17 @@ in
     enable = true;
     # Enable WebGL, cookies and history
     settings = {
-      "webgl.disabled" = false;
+      "browser.search.defaultenginename" = "StartPage";
+      "browser.search.order.1" = "StartPage";
+      "general.autoScroll" = true;
+      "identity.fxaccounts.enabled" = true;
+      "middlemouse.paste" = false;
       "privacy.resistFingerprinting" = false;
       "privacy.fingerprintingProtection" = true;
       "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme";
       "privacy.clearOnShutdown.history" = false;
       "privacy.clearOnShutdown.cookies" = true;
-      "browser.search.defaultenginename" = "StartPage";
-      "browser.search.order.1" = "StartPage";
+      "webgl.disabled" = false;
     };
     policies = {
       DefaultDownloadDirectory = "\${home}/tmp";
