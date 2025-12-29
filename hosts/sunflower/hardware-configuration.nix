@@ -15,7 +15,10 @@
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices."luks-f027b384-de44-4608-ac5a-e3d3a05fc51c".device = "/dev/disk/by-uuid/f027b384-de44-4608-ac5a-e3d3a05fc51c";
+  boot.initrd.luks.devices = {
+    "luks-f027b384-de44-4608-ac5a-e3d3a05fc51c".device = "/dev/disk/by-uuid/f027b384-de44-4608-ac5a-e3d3a05fc51c";
+    "luks-240648cb-9fcb-4cfd-a59e-e5fd101d0224".device = "/dev/disk/by-uuid/240648cb-9fcb-4cfd-a59e-e5fd101d0224";
+  };
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/3B74-21D6";

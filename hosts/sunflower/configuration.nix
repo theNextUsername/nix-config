@@ -20,7 +20,15 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  boot.initrd.luks.devices."luks-240648cb-9fcb-4cfd-a59e-e5fd101d0224".device = "/dev/disk/by-uuid/240648cb-9fcb-4cfd-a59e-e5fd101d0224";
+  # Autologin from luks password
+  boot.initrd.systemd.enable = true;
+  systemd.services.display-manager.serviceConfig.KeyringMode = "inherit";
+  security.pam.services.sddm-autologin.text = pkgs.lib.mkBefore ''
+    auth optional ${pkgs.systemd}/lib/security/pam_systemd_loadkey.so
+    auth include sddm
+  '';
+  services.displayManager.autoLogin.user = "tnu";
+ 
   networking.hostName = "sunflower";
 
   users.users.tnu = {
