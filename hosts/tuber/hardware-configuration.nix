@@ -1,7 +1,9 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports = [ ];
+  imports = [
+    "${modulesPath}/virtualisation/lxc-container.nix"
+  ];
 
   boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "mpt3sas" "nvme" "usbhid" ];
   boot.initrd.kernelModules = [ ];
