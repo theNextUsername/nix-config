@@ -15,6 +15,14 @@
     package = pkgs.niri;
   };
  
+  # Configure split DNS
+  networking.networkmanager.enable = true;
+  networking.networkmanager.dns = "dnsmasq";
+
+  environment.etc."NetworkManager/dnsmasq.d/servers".text = ''
+    server=/homelab.thenextusername.xyz/192.168.2.4 
+  '';
+
   # enable auto-unlock of kwallet taken from the plasma.nix module in nixpkgs
   security.pam.services = {
     swaylock = {}; # Allow swaylock to be enabled in home manager

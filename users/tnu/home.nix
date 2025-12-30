@@ -49,9 +49,10 @@ in
     wireshark
     marksman
     vscode-langservers-extracted
-    ungoogled-chromium
     tor-browser
     tlrc
+    unison
+    ungoogled-chromium
     protonvpn-gui
     monero-gui
     networkmanagerapplet

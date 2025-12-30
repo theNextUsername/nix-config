@@ -9,15 +9,6 @@
   networking.domain = lib.mkDefault "homelab.thenextusername.xyz";
   networking.firewall.enable = true;
 
-  # Configure split DNS
-  networking.networkmanager.enable = true;
-  networking.networkmanager.dns = "dnsmasq";
-
-  environment.etc."NetworkManager/dnsmasq.d/servers".text = ''
-    server=/homelab.thenextusername.xyz/192.168.2.4 
-  '';
-  
-
   time.timeZone = lib.mkDefault "America/Indiana/Indianapolis";
 
   environment.systemPackages = with pkgs; [

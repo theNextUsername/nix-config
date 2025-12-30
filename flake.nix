@@ -76,16 +76,11 @@
           }
         ];
       };
-      tritoma = nixpkgs.lib.nixosSystem {
+      tuber = nixpkgs.lib.nixosSystem {
         modules = [
+          ./hosts/tuber
           ./modules/common.nix
-          ./hosts/tritoma
-        ];
-      };
-      blossom = nixpkgs.lib.nixosSystem {
-        modules = [
-          ./modules/common.nix
-          ./hosts/blossom
+          nixos-cli.nixosModules.nixos-cli
         ];
       };
     };
