@@ -10,6 +10,8 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+  networking.hostId = lib.mkDefault "ae123b90";
+
   fileSystems."/" =
     { device = "vm-pool/subvol-113-disk-0";
       fsType = "zfs";
