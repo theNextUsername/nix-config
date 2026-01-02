@@ -20,7 +20,7 @@
   };  
 
   users.users.root = {
-    openssh.authorizedKeys.keys = [
+    openssh.authorizedKeys.keys = lib.mkDefault [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOzZsCPr9p5bdDz1wyhKelr+y8KtqlQDrzK63nWy1wzj tnu@aster"
     ];
   };
