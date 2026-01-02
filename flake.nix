@@ -59,8 +59,8 @@ in {
           }
           ./modules/proxmox
         ];
-      }
-    }
+      };
+    };
     nixosConfigurations = {
       aster = nixpkgs.lib.nixosSystem {
         modules = [
