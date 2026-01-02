@@ -3,7 +3,11 @@ let
   tnupkgs = tnutils.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
-  imports = [ ./waybar.nix ./niri.nix ];
+  imports = [
+    ./ssh.nix
+    ./waybar.nix
+    ./niri.nix
+  ];
   home.username = "tnu";
   home.sessionVariables = {
     EDITOR = "hx";

@@ -20,6 +20,7 @@
 
   users.users.tnu = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    # Should not have these permissions by default
+    # extraGroups = [ "wheel" "networkmanager" ];
   };
 }

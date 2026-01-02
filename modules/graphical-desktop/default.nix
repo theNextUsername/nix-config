@@ -5,6 +5,10 @@
     ./sddm.nix
   ];
 
+  users.users.tnu = {
+    extraGroups = [ "wheel" "networkmanager" ];
+  };
+
   programs.firefox = {
     enable = true;
     package = pkgs.librewolf;
