@@ -7,6 +7,7 @@ in
     ./ssh.nix
     ./waybar.nix
     ./niri.nix
+    ./unison.nix
   ];
   home.username = "tnu";
   home.sessionVariables = {
