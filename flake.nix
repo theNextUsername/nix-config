@@ -51,24 +51,10 @@
       proxmox = nixos-generators.nixosGenerate {
         inherit system;
         modules = [
+          ./modules/proxmox
           {
-            virtualisation.diskSize = 8 * 1024; # 8 GiB
-            proxmox = {
-              qemuConf = {
-                cores = 1;
-                memory = 2048;
-                name = "nixos";
-                agent = true;
-                net0 = "virtio=00:00:00:00:00:00,bridge=vmbr1,firewall=1";
-              };
-              cloudInit = {
-                enable = true;
-                defaultStorage = "vm-pool";
-              };
-            };
             system.stateVersion = "25.11";
           }
-          ./modules/proxmox
         ];
       };
     };
@@ -114,7 +100,7 @@
       tuber = nixpkgs.lib.nixosSystem {
         modules = [
           ./hosts/tuber
-          ./modules/proxmox
+          ./modules/proxmox/configuration.nix # only need the base config
           ./modules/common.nix
           nixos-cli.nixosModules.nixos-cli
         ];
