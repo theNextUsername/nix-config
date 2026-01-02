@@ -1,15 +1,12 @@
 {
   description = "general system config";
 
-  inputs =
-  let
-    currentNixosVersion = "25.11";
-  in {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-${currentNixosVersion}";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-${currentNixosVersion}";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-cli = {
@@ -25,7 +22,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
-      url = "github:nix-community/stylix/release-${currentNixosVersion}";
+      url = "github:nix-community/stylix/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri = {
@@ -48,7 +45,6 @@
   let
     system = "x86_64-linux";
     # pkgs = nixpkgs.legacyPackages.${system};
-    currentNixosVersion = "25.11";
   in {
     packages.${system} = rec {
       default = proxmox;
@@ -56,7 +52,7 @@
         inherit system;
         modules = [
           {
-            system.stateVersion = "${currentNixosVersion}";
+            system.stateVersion = "25.11";
           }
           ./modules/proxmox
         ];
