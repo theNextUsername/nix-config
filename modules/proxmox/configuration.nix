@@ -15,6 +15,7 @@
   networking.domain = "homelab.thenextusername.xyz";
   networking.firewall.allowedTCPPorts = [ 22 ];
   
+  services.qemuGuest.enable = true;
   services.cloud-init = {
     network.enable = true;
     ext4.enable = true;
