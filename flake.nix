@@ -1,9 +1,10 @@
-let
-  currentNixosVersion = "25.11";
-in {
+{
   description = "general system config";
 
-  inputs = {
+  inputs =
+  let
+    currentNixosVersion = "25.11";
+  in {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-${currentNixosVersion}";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
@@ -47,8 +48,8 @@ in {
   let
     system = "x86_64-linux";
     # pkgs = nixpkgs.legacyPackages.${system};
-  in
-  {
+    currentNixosVersion = "25.11";
+  in {
     packages.${system} = rec {
       default = proxmox;
       proxmox = nixos-generators.nixosGenerate {
