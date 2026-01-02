@@ -1,28 +1,26 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports = [
-    "${modulesPath}/virtualisation/lxc-container.nix"
-  ];
+  imports =
+    [ (modulesPath + "/profiles/qemu-guest.nix")
+    ];
 
-  boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "mpt3sas" "nvme" "usbhid" ];
+  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_blk" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-  networking.hostId = lib.mkDefault "ae123b90";
-
   fileSystems."/" =
-    { device = "vm-pool/subvol-113-disk-0";
-      fsType = "zfs";
+    { device = "/dev/disk/by-uuid/f222513b-ded1-49fa-b591-20ce86a2fe7f";
+      fsType = "ext4";
     };
 
   fileSystems."/home/tnu" =
-    { device = "storage-pool/subvol-113-disk-0";
-      fsType = "zfs";
+    { device = "/dev/disk/by-uuid/12805fce-6d26-483f-92a6-349acf0adef4";
+      fsType = "ext4";
     };
 
   swapDevices = [ ];
 
-  nixpkgs.hostPlatform = "x86_64-linux";
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
