@@ -45,6 +45,29 @@
   let
     system = "x86_64-linux";
     # pkgs = nixpkgs.legacyPackages.${system};
+
+    defaultModules = [
+      ./modules/common.nix
+      nixos-cli.nixosModules.nixos-cli
+    ];
+
+    proxmoxHostModules = [
+      ./modules/proxmox/configuration.nix
+    ] ++ defaultModules;
+    
+    graphicalDesktopModules = [
+      ./modules/graphical-desktop
+      stylix.nixosModules.stylix
+      home-manager.nixosModules.home-manager
+      niri.nixosModules.niri
+      {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+
+        home-manager.extraSpecialArgs = inputs;
+        home-manager.users.tnu = import ./users/tnu/home.nix;
+      }
+    ] ++ defaultModules;
   in {
     packages.${system} = rec {
       default = proxmox;
@@ -52,58 +75,29 @@
         inherit system;
         modules = [
           ./modules/proxmox
-          {
-            system.stateVersion = "25.11";
-          }
+          { system.stateVersion = "25.11"; }
         ];
+        format = "proxmox";
       };
     };
+
     nixosConfigurations = {
       aster = nixpkgs.lib.nixosSystem {
         modules = [
-          ./modules/common.nix
-          ./modules/graphical-desktop
           ./hosts/aster
-          stylix.nixosModules.stylix
           nixos-hardware.nixosModules.framework-13th-gen-intel
-          home-manager.nixosModules.home-manager
-          nixos-cli.nixosModules.nixos-cli
-          niri.nixosModules.niri
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.extraSpecialArgs = inputs;
-            home-manager.users.tnu = import ./users/tnu/home.nix;
-          }
-        ];
+        ] ++ graphicalDesktopModules;
       };
       sunflower = nixpkgs.lib.nixosSystem {
         modules = [
-          ./modules/common.nix
           ./modules/stylix.nix
-          ./modules/graphical-desktop
           ./hosts/sunflower
-          stylix.nixosModules.stylix
-          home-manager.nixosModules.home-manager
-          nixos-cli.nixosModules.nixos-cli
-          niri.nixosModules.niri
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.extraSpecialArgs = inputs;
-            home-manager.users.tnu = import ./users/tnu/home.nix;
-          }
-        ];
+        ] ++ graphicalDesktopModules;
       };
       tuber = nixpkgs.lib.nixosSystem {
         modules = [
           ./hosts/tuber
-          ./modules/proxmox/configuration.nix # only need the base config
-          ./modules/common.nix
-          nixos-cli.nixosModules.nixos-cli
-        ];
+        ] ++ proxmoxHostModules;
       };
     };
   };
