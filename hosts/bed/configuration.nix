@@ -10,4 +10,5 @@
   
   networking.hostName = "bed";
 
+  system.stateVersion = "25.05";
 }
