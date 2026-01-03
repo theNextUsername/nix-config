@@ -82,6 +82,11 @@
     };
 
     nixosConfigurations = {
+      bed = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/bed
+        ] ++ defaultModules;
+      };
       aster = nixpkgs.lib.nixosSystem {
         modules = [
           ./hosts/aster

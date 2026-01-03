@@ -13,13 +13,13 @@ in
   options.homelab = {
     userKeys = lib.mkOption {
       type = lib.types.listOf lib.types.singleLineStr;
-      default = [];
+      default = defaultUserKeys;
       description = "List of keys to use for users.users.tnu.openssh.authorizedKeys.keys";
     };
 
     rootKeys = lib.mkOption {
       type = lib.types.listOf lib.types.singleLineStr;
-      default = [];
+      default = defaultRootKeys;
       description = "List of keys to use for users.users.root.openssh.authorizedKeys.keys";
     };
   };
