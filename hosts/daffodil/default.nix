@@ -5,7 +5,5 @@
     ./configuration.nix
     ./hardware-configuration.nix
     ./networking.nix
-    ./microvms.nix
   ];
-
 }

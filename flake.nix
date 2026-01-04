@@ -17,6 +17,10 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    microvm = {
+      url = "github:microvm-nix/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     tnutils = {
       url = "github:theNextUsername/theNextUtils";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,6 +42,7 @@
     home-manager,
     nixos-cli,
     nixos-generators,
+    microvm,
     tnutils,
     stylix,
     niri
@@ -85,6 +90,7 @@
       bed = nixpkgs.lib.nixosSystem {
         modules = [
           ./hosts/bed
+          microvm.nixosModules.host
         ] ++ defaultModules;
       };
       aster = nixpkgs.lib.nixosSystem {
@@ -103,6 +109,12 @@
         modules = [
           ./hosts/tuber
         ] ++ proxmoxHostModules;
+      };
+      daffodil = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/daffodil
+          microvm.nixosModules.microvm
+        ] ++ defaultModules;
       };
     };
   };

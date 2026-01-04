@@ -23,7 +23,7 @@
           )
           
           (defalias
-            ext  (tap-hold-next-press 1000 (layer-switch extend) (layer-toggle extend)) ;; Bind 'ext' to the Extend Layer
+            ext  (layer-toggle extend) ;; Bind 'ext' to the Extend Layer
             col  (layer-switch colemak-dh)
           )
 
