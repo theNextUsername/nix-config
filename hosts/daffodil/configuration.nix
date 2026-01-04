@@ -4,7 +4,7 @@
   services.mollysocket.enable = true;
   services.mollysocket = {
     settings.allowed_endpoints = [
-      "https://push.services.mozilla.com"
+      "https://updates.push.services.mozilla.com"
     ];
     environmentFile = "/etc/mollysocket/private/environment";
   };
