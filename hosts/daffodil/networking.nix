@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  networking.hostname = "daffodil";
+  networking.hostName = "daffodil";
 
   systemd.network.enable = true;
   systemd.network.networks."20-lan" = {
