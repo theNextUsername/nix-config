@@ -88,6 +88,7 @@
 
     nixosConfigurations = {
       bed = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit self; };
         modules = [
           ./hosts/bed
           microvm.nixosModules.host
