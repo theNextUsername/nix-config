@@ -5,8 +5,8 @@
   services.kmonad = {
     enable = true;
     keyboards = {
-      frameworkkb = {
-        device = "/dev/input/by-path/pci-0000:04:00.0-usbv2-0:9:1.0-event-kbd";
+      onnkb = {
+        device = "/dev/input/by-id/usb-SIGMACHIP_USB_Keyboard-event-kbd";
         extraGroups = [ "uinput" ];
         defcfg = {
           enable = true;
