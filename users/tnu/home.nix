@@ -8,6 +8,7 @@ in
     ./waybar.nix
     ./niri.nix
     ./unison.nix
+    ./vr.nix
   ];
   home.username = "tnu";
   home.sessionVariables = {
