@@ -37,6 +37,15 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Autologin from luks password
+  boot.initrd.systemd.enable = true;
+  systemd.services.display-manager.serviceConfig.KeyringMode = "inherit";
+  security.pam.services.sddm-autologin.text = pkgs.lib.mkBefore ''
+    auth optional ${pkgs.systemd}/lib/security/pam_systemd_loadkey.so
+    auth include sddm
+  '';
+  services.displayManager.autoLogin.user = "tnu";
+
   users.users.tnu = {
     # uinput and input are for proper kmonad functioning, dialout is for access to serial devices
     extraGroups = [ "wireshark" "uinput" "input" "dialout" ];
