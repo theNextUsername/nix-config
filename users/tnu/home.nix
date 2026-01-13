@@ -1,4 +1,4 @@
-{ pkgs, config, tnutils, ... }:
+{ pkgs, lib, config, tnutils, ... }:
 let
   tnupkgs = tnutils.packages.${pkgs.stdenv.hostPlatform.system};
 in
@@ -120,7 +120,20 @@ in
       XDG_MISC_DIR = "${config.home.homeDirectory}/main/misc";
     };
   };
-  
+
+  xdg.configFile.kdeglobals.source =
+  let
+    themePackage = builtins.head (
+      builtins.filter (
+        p: builtins.match ".*stylix-kde-theme.*" (builtins.baseNameOf p) != null
+      ) config.home.packages
+    );
+    colorSchemeSlug = lib.concatStrings (
+      lib.filter lib.isString (builtins.split "[^a-zA-Z]" config.lib.stylix.colors.scheme)
+    );
+  in
+  "${themePackage}/share/color-schemes/${colorSchemeSlug}.colors";
+
   fonts.fontconfig.enable = true;
 
   programs.git = {
