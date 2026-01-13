@@ -15,7 +15,6 @@
     "steam-original"
     "steam-unwrapped"
     "steam-run"
-    "ciscoPacketTracer8"
   ];
   programs.steam = {
     enable = true;
