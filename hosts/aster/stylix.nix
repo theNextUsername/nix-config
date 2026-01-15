@@ -10,6 +10,9 @@
     '';
     polarity = "dark";
     homeManagerIntegration.followSystem = true;
+    targets.plymouth = {
+      logo = ./flower.png;
+    };
   };
 
 }
