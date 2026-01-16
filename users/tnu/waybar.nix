@@ -27,6 +27,13 @@
           format-icons = ["󰃞" "󰃟" "󰃠"];
           tooltip-format = "{percent}%";
         };
+        idle_inhibitor = {
+          format = "{icon}";
+          format-icons = {
+            activated = "󱄄";
+            deactivated = "󰍹";
+          };
+        };
         "custom/power" = {
           format = " 󰐥 ";
           on-double-click = "systemctl poweroff";
@@ -42,6 +49,7 @@
         ];
         modules-left = [
           "custom/power"
+          "idle_inhibitor"
         ];
       };
     };
