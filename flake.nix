@@ -21,6 +21,10 @@
       url = "github:microvm-nix/microvm.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     tnutils = {
       url = "github:theNextUsername/theNextUtils";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,6 +47,7 @@
     nixos-cli,
     nixos-generators,
     microvm,
+    disko,
     tnutils,
     stylix,
     niri
@@ -116,6 +121,14 @@
         modules = [
           ./hosts/daffodil
           microvm.nixosModules.microvm
+        ] ++ defaultModules;
+      };
+
+      # lan hosts
+      finbar = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/finbar
+          disko.nixosModules.disko          
         ] ++ defaultModules;
       };
     };
