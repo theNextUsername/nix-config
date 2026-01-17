@@ -3,15 +3,20 @@
 {
   disko.devices = {
     disk = {
-      vdb = {
+      main = {
         device = "/dev/vda";
         type = "disk";
         content = {
           type = "gpt";
           partitions = {
+            MBR = {
+              type = "EF02";
+              size = "1M";
+              priority = 1;
+            };
             ESP = {
               type = "EF00";
-              size = "100M";
+              size = "500M";
               content = {
                 type = "filesystem";
                 format = "vfat";

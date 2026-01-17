@@ -40,6 +40,7 @@ in
     ];
 
     services.openssh.enable = lib.mkDefault true;
+    services.openssh.openFirewall = true;
 
     users.users.tnu = {
       isNormalUser = true;
