@@ -3,6 +3,8 @@
 {
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
+
+  networking.hostName = "finbar";
   
   services.minecraft-server = {
     enable = true;
