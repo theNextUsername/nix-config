@@ -65,6 +65,42 @@
   };
   services.libinput.enable = true;
   services.flatpak.enable = true;
+
+  system.autoUpgrade = {
+    enable = true;
+    upgrade = false;
+    runGarbageCollection = true;
+    persistent = true;
+    operation = "boot";
+    dates = "daily";
+    flake = "github:theNextUsername/nix-config";
+  };
+  systemd.services = {
+    "service-success@" = {
+      unitConfig = {
+        Description = "Notify all users of successful service completion";
+      };
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${pkgs.dbus}/bin/dbus-send --system / net.nuetzlich.SystemNotifications.Notify \"string:%i was successful\"";
+      };
+    };
+    "service-failure@" = {
+      unitConfig = {
+        Description = "Notify all users of service failure";
+      };
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${pkgs.dbus}/bin/dbus-send --system / net.nuetzlich.SystemNotifications.Notify \"string:%i failed!!\"";
+      };
+    };
+    nixos-upgrade = {
+      unitConfig = {
+        OnFailure = "service-failure@%n.service";
+        OnSuccess = "service-success@%n.service";
+      }; 
+    };
+  };
   
   environment.systemPackages = with pkgs; [
     qt6.qtwayland

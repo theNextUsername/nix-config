@@ -58,7 +58,7 @@ in
     tor-browser
     tlrc
     unison
-    ungoogled-chromium
+    # ungoogled-chromium
     protonvpn-gui
     monero-gui
     networkmanagerapplet
@@ -229,6 +229,10 @@ in
       };
     };
   };
+
+  # Allows notifications from root processes using e.g.
+  # `dbus-send --system / net.nuetzlich.SystemNotifications.Notify "string:hello world"`
+  services.systembus-notify.enable = true;
 
 
   # This value determines the home Manager release that your
