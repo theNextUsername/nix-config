@@ -58,7 +58,7 @@ in
     tor-browser
     tlrc
     unison
-    # ungoogled-chromium
+    ungoogled-chromium
     protonvpn-gui
     monero-gui
     networkmanagerapplet
