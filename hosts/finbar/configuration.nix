@@ -14,12 +14,13 @@
   };
 
   system.autoUpgrade = {
+    enable = true;
     upgrade = false;
     runGarbageCollection = true;
     persistent = true;
     operation = "boot";
     dates = "daily";
-    flake = "/etc/nixos/flake.nix";
+    flake = "github:theNextUsername/nix-config";
   };
 
   system.stateVersion = "25.11"; 
