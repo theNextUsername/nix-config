@@ -22,6 +22,8 @@
   # Configure split DNS
   networking.networkmanager.enable = true;
   networking.networkmanager.dns = "dnsmasq";
+  networking.networkmanager.plugins = [ pkgs.networkmanager-openvpn ];
+
 
   environment.etc."NetworkManager/dnsmasq.d/servers".text = ''
     server=/homelab.thenextusername.xyz/192.168.2.4 
