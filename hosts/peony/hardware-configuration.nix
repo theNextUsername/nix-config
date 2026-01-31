@@ -1,16 +1,6 @@
 { lib, config, ... }: {
   microvm = {
     hypervisor = "cloud-hypervisor";
-
-    volumes = [
-      {
-        label = "secrets";
-        readOnly = true;
-        size = 10;
-        mountPoint = "/etc/mollysocket/private";
-        image = "/var/lib/microvms/${config.networking.hostName}/secrets.img";
-      }
-    ];
     
     shares = [
       {
@@ -19,13 +9,19 @@
         mountPoint = "/nix/.ro-store";
         proto = "virtiofs";
       }
+      {
+        tag = "secrets";
+        source = "/etc/secrets/${config.networking.hostName}";
+        mountPoint = "/etc/secrets";
+        proto = "virtiofs";
+      }
     ];
     
     interfaces = [
       {
         type = "tap";
-        id = "vm-nic1";
-        mac = "02:00:00:00:00:01";
+        id = "vm-nic2";
+        mac = "02:00:00:00:00:02";
       }
     ];
   };

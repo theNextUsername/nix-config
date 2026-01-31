@@ -117,9 +117,14 @@
         ] ++ proxmoxHostModules;
       };
       daffodil = nixpkgs.lib.nixosSystem {
-        inherit system;
         modules = [
           ./hosts/daffodil
+          microvm.nixosModules.microvm
+        ] ++ defaultModules;
+      };
+      peony = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/peony 
           microvm.nixosModules.microvm
         ] ++ defaultModules;
       };
