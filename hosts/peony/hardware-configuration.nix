@@ -1,6 +1,6 @@
 { lib, config, ... }: {
   microvm = {
-    hypervisor = "cloud-hypervisor";
+    hypervisor = "qemu";
     
     shares = [
       {

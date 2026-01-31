@@ -64,6 +64,9 @@
     proxmoxHostModules = [
       ./modules/proxmox/configuration.nix
     ] ++ defaultModules;
+
+    ozoneHosts = [
+    ] ++ defaultModules;
     
     graphicalDesktopModules = [
       ./modules/graphical-desktop
@@ -126,7 +129,7 @@
         modules = [
           ./hosts/peony 
           microvm.nixosModules.microvm
-        ] ++ defaultModules;
+        ] ++ ozoneHosts;
       };
 
       # lan hosts
