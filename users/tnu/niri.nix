@@ -10,6 +10,13 @@
       xwayland-satellite
       protonmail-bridge
       kdePackages.kwallet-pam
+      wtype
+      (pkgs.writeShellApplication {
+        name = "type-clipboard";
+        text = ''
+          wtype -- "$(wl-paste)"
+        '';
+      })
     ];
     systemd.user.services = {
       swaybg = {
@@ -293,6 +300,7 @@
             "Mod+Shift+P".action = power-off-monitors;
             "Mod+Shift+S".action.screenshot = []; 
             "Mod+L".action.spawn = "swaylock";
+            "Mod+P".action.spawn = "type-clipboard";
             "Mod+B".action.spawn = "librewolf";              
             "Mod+T".action.spawn = "alacritty";
             "Alt+Space".action.spawn = "fuzzel";
