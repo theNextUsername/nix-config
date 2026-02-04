@@ -21,6 +21,10 @@
             lsft      z    x    c    v    b    n    m    ,    .    /    rsft
             lctl    lmet lalt           spc            ralt  rctl
           )
+
+          (defalias
+            pwd (tap-macro Z e r 0 spc d a y s spc s i n c e spc l a s t spc i n c i d e n t ! ret)
+          )
           
           (defalias
             ext  (layer-toggle extend) ;; Bind 'ext' to the Extend Layer
@@ -49,7 +53,7 @@
 
           (deflayer extend
             _        play rewind previoussong nextsong ejectcd refresh brdn brup www mail prog1 prog2 del
-            _        f1   f2   f3   f4   f5   f6   f7   f8   f9  f10   f11  f12  _
+            _        @pwd   f2   f3   f4   f5   f6   f7   f8   f9  f10   f11  f12  _
             _        esc  @bk  @fnd @fw  ins  pgup home up   end  menu prnt slck _
             @col     lalt lmet lsft lctl ralt pgdn lft  down rght del  caps _
             _          @cut @cpy  tab  @pst @udo pgdn bks  lsft lctl comp _
