@@ -60,12 +60,14 @@
     loader.timeout = 0;
   };
 
+  users.groups.ydotool = {};
   users.users.tnu = {
     # uinput and input are for proper kmonad functioning, dialout is for access to serial devices
-    extraGroups = [ "wireshark" "uinput" "input" "dialout" ];
+    extraGroups = [ "wireshark" "uinput" "input" "dialout" "ydotool" ];
   };
 
   programs.wireshark.enable = true;
+  programs.ydotool.enable = true;
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;

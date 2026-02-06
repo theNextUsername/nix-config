@@ -32,10 +32,10 @@
           )
 
           (defalias
-            cpy C-c
-            pst C-v
-            cut C-x
-            udo C-z
+            cpy KeyCopy
+            pst KeyPaste
+            cut KeyCut
+            udo KeyUndo
             all C-a
             fnd C-f
             bk Back

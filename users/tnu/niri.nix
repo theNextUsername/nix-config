@@ -10,11 +10,12 @@
       xwayland-satellite
       protonmail-bridge
       kdePackages.kwallet-pam
-      wtype
+      ydotool
       (pkgs.writeShellApplication {
         name = "type-clipboard";
         text = ''
-          wtype -- "$(wl-paste)"
+          sleep 1s
+          ydotool type -- "$(wl-paste)"
         '';
       })
     ];
@@ -300,7 +301,7 @@
             "Mod+Shift+P".action = power-off-monitors;
             "Mod+Shift+S".action.screenshot = []; 
             "Mod+L".action.spawn = "swaylock";
-            "Mod+P".action.spawn = "type-clipboard";
+            "Ctrl+V".action.spawn = "type-clipboard";
             "Mod+B".action.spawn = "librewolf";              
             "Mod+T".action.spawn = "alacritty";
             "Alt+Space".action.spawn = "fuzzel";
