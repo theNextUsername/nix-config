@@ -301,7 +301,7 @@
             "Mod+Shift+P".action = power-off-monitors;
             "Mod+Shift+S".action.screenshot = []; 
             "Mod+L".action.spawn = "swaylock";
-            "Ctrl+V".action.spawn = "type-clipboard";
+            "Ctrl+Shift+V".action.spawn = "type-clipboard";
             "Mod+B".action.spawn = "librewolf";              
             "Mod+T".action.spawn = "alacritty";
             "Alt+Space".action.spawn = "fuzzel";
