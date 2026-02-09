@@ -116,6 +116,11 @@
           ./hosts/tuber
         ] ++ proxmoxHostModules;
       };
+      lily = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/lily
+        ] ++ proxmoxHostModules;
+      };     
       daffodil = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
