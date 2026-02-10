@@ -2,5 +2,5 @@
 
 {
   networking.hostName = "lily";
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.firewall.allowedTCPPorts = [ 22 8883 ];
 }
