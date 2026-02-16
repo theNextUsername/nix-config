@@ -4,7 +4,7 @@
   
   microvm.autostart = [
     "daffodil"
-    "peony"
+    # "peony"
   ];
 
   microvm.vms = {
@@ -12,9 +12,9 @@
       flake = self;
       updateFlake = "github:/theNextUsername/nix-config";
     };
-    peony = {
-      flake = self;
-      updateFlake = "github:/theNextUsername/nix-config";
-    };
+    # peony = {
+    #   flake = self;
+    #   updateFlake = "github:/theNextUsername/nix-config";
+    # };
   };
 }

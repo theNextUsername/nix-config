@@ -64,10 +64,7 @@
     proxmoxHostModules = [
       ./modules/proxmox/configuration.nix
     ] ++ defaultModules;
-
-    ozoneHosts = [
-    ] ++ defaultModules;
-    
+  
     graphicalDesktopModules = [
       ./modules/graphical-desktop
       stylix.nixosModules.stylix
@@ -128,8 +125,12 @@
       peony = nixpkgs.lib.nixosSystem {
         modules = [
           ./hosts/peony 
-          microvm.nixosModules.microvm
-        ] ++ ozoneHosts;
+        ] ++ proxmoxHostModules;
+      };
+      ns1 = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/ns1
+        ] ++ proxmoxHostModules;
       };
 
       # lan hosts

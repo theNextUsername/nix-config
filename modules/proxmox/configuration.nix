@@ -27,6 +27,7 @@
 
   # Should probably look at what other options are available for this
   services.cloud-init = {
+    enable = true;
     network.enable = true;
     ext4.enable = true;
   };
