@@ -64,7 +64,7 @@
     proxmoxHostModules = [
       ./modules/proxmox/configuration.nix
     ] ++ defaultModules;
-    
+  
     graphicalDesktopModules = [
       ./modules/graphical-desktop
       stylix.nixosModules.stylix
@@ -122,11 +122,20 @@
         ] ++ proxmoxHostModules;
       };     
       daffodil = nixpkgs.lib.nixosSystem {
-        inherit system;
         modules = [
           ./hosts/daffodil
           microvm.nixosModules.microvm
         ] ++ defaultModules;
+      };
+      peony = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/peony 
+        ] ++ proxmoxHostModules;
+      };
+      ns1 = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/ns1
+        ] ++ proxmoxHostModules;
       };
 
       # lan hosts

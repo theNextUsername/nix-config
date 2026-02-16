@@ -1,22 +1,18 @@
-{ config, ... }: {
+{ lib, config, ... }: {
   microvm = {
-    hypervisor = "cloud-hypervisor";
+    hypervisor = "qemu";
 
-    volumes = [
-      {
-        label = "secrets";
-        readOnly = true;
-        size = 10;
-        mountPoint = "/etc/mollysocket/private";
-        image = "/var/lib/microvms/${config.networking.hostName}/secrets.img";
-      }
-    ];
-    
     shares = [
       {
         tag = "ro-store";
         source = "/nix/store";
         mountPoint = "/nix/.ro-store";
+        proto = "virtiofs";
+      }
+      {
+        tag = "secrets";
+        source = "/etc/secrets/${config.networking.hostName}";
+        mountPoint = "/etc/secrets";
         proto = "virtiofs";
       }
     ];
@@ -29,4 +25,6 @@
       }
     ];
   };
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
