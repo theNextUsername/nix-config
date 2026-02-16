@@ -36,8 +36,12 @@ in
       "lily.thenextusername.xyz" = {
         domain = "lily.thenextusername.xyz";
         group = "mosquitto";
-        dnsProvider = "cloudflare";
-        environmentFile = "/etc/secrets/cloudflare";
+        dnsProvider = "rfc2136";
+        environmentFile = pkgs.writeText "rfc2136-environment" ''
+          RFC2136_NAMESERVER=peony.homelab.thenextusername.xyz
+          RFC2136_TSIG_KEY=peony-lily.
+          RFC2136_TSIG_FILE=/etc/secrets/peony-lily.key
+        '';
         reloadServices = [
           "mosquitto"
         ];
