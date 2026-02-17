@@ -26,7 +26,21 @@ in
   config = {
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-    services.nixos-cli.enable = true;
+    system.autoUpgrade.enable = lib.mkDefault true;
+    system.autoUpgrade = {
+      upgrade = false;
+      runGarbageCollection = true;
+      persistent = true;
+      operation = "switch";
+      dates = "daily";
+      flake = "github:theNextUsername/nix-config";
+    };
+
+    nix.gc.options = "--delete-older-than 7d";
+    nix.extraOptions = ''
+      min-free = ${toString (100 * 1024 * 1024)}
+      max-free = ${toString (1024 * 1024 * 1024)}
+    '';
 
     networking.useDHCP = lib.mkDefault true;
     networking.domain = lib.mkDefault "homelab.thenextusername.xyz";

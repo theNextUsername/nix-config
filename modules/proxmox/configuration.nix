@@ -25,6 +25,7 @@
   # but it seems like it is not, as the guest agent dies after rebuilding
   services.qemuGuest.enable = true;
 
+  networking.useDHCP = false; # Network is handled by cloud-init
   # Should probably look at what other options are available for this
   services.cloud-init = {
     enable = true;

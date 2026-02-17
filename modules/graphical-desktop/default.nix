@@ -9,6 +9,8 @@
     extraGroups = [ "wheel" "networkmanager" ];
   };
 
+  services.nixos-cli.enable = true;
+
   programs.firefox = {
     enable = true;
     package = pkgs.librewolf;
@@ -68,15 +70,6 @@
   services.libinput.enable = true;
   services.flatpak.enable = true;
 
-  system.autoUpgrade = {
-    enable = true;
-    upgrade = false;
-    runGarbageCollection = true;
-    persistent = true;
-    operation = "boot";
-    dates = "daily";
-    flake = "github:theNextUsername/nix-config";
-  };
   systemd.services = {
     "service-success@" = {
       unitConfig = {
