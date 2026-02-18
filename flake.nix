@@ -137,6 +137,12 @@
           ./hosts/ns1
         ] ++ proxmoxHostModules;
       };
+      nepenthes = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/nepenthes
+        ] ++ proxmoxHostModules;
+      };
+
 
       # lan hosts
       finbar = nixpkgs.lib.nixosSystem {
