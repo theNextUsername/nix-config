@@ -23,7 +23,7 @@
           )
 
           (defalias
-            pwd (tap-macro Z e r 0 spc d a y s spc s i n c e spc l a s t spc i n c i d e n t ! ret)
+            pwd (tap-macro Z e r 0 spc d a y s spc s i n c e spc l a s t spc i n c i d e n t !)
           )
           
           (defalias
