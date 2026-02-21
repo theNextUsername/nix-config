@@ -1,0 +1,24 @@
+receivers:
+  systemd:
+    scope: system
+    units: ["*.service"]
+  hostmetrics:
+    collection_interval: 30s
+    scrapers:
+      cpu:
+      memory:
+      disk:
+      load:
+      process:
+        include:
+          match_type: regexp
+          names: [ "prometheus.*" ]
+exporters:
+  prometheus:
+    endpoint: "localhost:9091"
+      
+service:
+  pipelines:
+    metrics:
+      receivers: [ systemd ]
+      exporters: [ prometheus ]

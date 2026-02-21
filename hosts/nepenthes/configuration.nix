@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, self, ... }:
 # let
 #   hostName = config.networking.hostName;
 # in
@@ -6,7 +6,13 @@
   services.prometheus.enable = true;
   services.prometheus = {
     stateDir = "prometheus2";
-    globalConfig.scrape_interval = "10s";
+    extraFlags = [
+      "--web.enable-otlp-receiver"
+    ];
+    globalConfig = {
+      scrape_interval = "10s";
+      # storage.tsdb.out_of_order_time_window = "30m";
+    };
     scrapeConfigs = [
       {
         job_name = "node";
@@ -17,34 +23,38 @@
         }];
       }
     ];
-
-    exporters.node = {
-      enable = true;
-      port = 9000;
-      enabledCollectors = [
-        "ethtool"   
-        "softirqs"
-        "systemd"
-        "tcpstat"
-        "wifi"
-      ];
-    };
   };
 
-  # services.opentelemetry-collector.enable = true;
-  # services.opentelemetry = {
-  #   package = pkgs.opentelemetry-collector-contrib;
-  #   configFile = pkgs.writeText "config.yaml" ''
-  #     recievers:
-  #       systemd:
-
-  #     service:
-  #       pipelines:
-  #         metrics:
-  #           recievers: [systemd]
-  #           exporters: []
-  #   '';
-  # };
+  services.opentelemetry-collector.enable = true;
+  services.opentelemetry-collector = {
+    package = pkgs.opentelemetry-collector-contrib;
+    # package = pkgs.buildOtelCollector {
+    #   pname = "otel-collector-node";
+    #   otelBuilderPackage = pkgs.opentelemetry-collector-builder.overrideAttrs (prev: final: {
+    #     version = "0.146.0";
+    #     src = pkgs.fetchFromGitHub {
+    #       owner = "open-telemetry";
+    #       repo = "opentelemetry-collector";
+    #       rev = "cmd/builder/v${final.version}";
+    #       hash = "sha256-ntRWAYbVbtZBqewXx4+YCZspRr+wSE2iGgmH8PEfj5o=";
+    #      };
+    #     vendorHash = "sha256-my52TJ2D9RXbIqSaY4PHwrYVd93dXXeg/srXHt1jcoI=";
+    #     proxyVendor = true;
+    #   });
+    #   version = "0.0.1";
+    #   config = {
+    #     recievers = [
+    #       {gomod = "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/systemdreceiver v0.146.0";}
+    #       {gomod = "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver v0.146.0";}
+    #     ];
+    #     exporters = [
+    #       {gomod = "github.com/open-telemetry/opentelemetry-collector-contrib/exporter/prometheusexporter v0.146.0";}
+    #     ];
+    #   };
+    #   vendorHash = "sha256-my52TJ2D9RXbIqSaY4PHwrYVd93dXXeg/srXHt1jcoI=";
+    # };
+    configFile = ./otel-config.yaml;
+  };
   
   # security.acme = {
   #   acceptTerms = true;

@@ -3,8 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
+    
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -54,7 +53,7 @@
   } @inputs:
   let
     system = "x86_64-linux";
-    # pkgs = nixpkgs.legacyPackages.${system};
+    pkgs = nixpkgs.legacyPackages.${system};
 
     defaultModules = [
       ./modules/common.nix
@@ -88,6 +87,10 @@
           { system.stateVersion = "25.11"; }
         ];
         format = "proxmox";
+      };
+      opentelemetry-collector-builder = pkgs.callPackage ./packages/opentelemetry-collector/builder.nix {};
+      opentelemetry-collector-releases = pkgs.callPackage ./packages/opentelemetry-collector/releases.nix {
+        opentelemetry-collector-builder = self.packages.${system}.opentelemetry-collector-builder;
       };
     };
 
@@ -138,8 +141,14 @@
         ] ++ proxmoxHostModules;
       };
       nepenthes = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit self; };
         modules = [
           ./hosts/nepenthes
+          {
+            nixpkgs.overlays = [
+              (import ./overlays/opentelemetry.nix)
+            ];
+          }
         ] ++ proxmoxHostModules;
       };
 
