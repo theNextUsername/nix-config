@@ -15,14 +15,24 @@
     };
     scrapeConfigs = [
       {
-        job_name = "node";
+        job_name = "opentelemetry-collector";
         static_configs = [{
           targets = [
-            "localhost:${toString config.services.prometheus.exporters.node.port}"
+            "localhost:9091"
           ];
         }];
       }
     ];
+  };
+
+  services.grafana.enable = true;
+  services.grafana = {
+    settings = {
+      server = {
+        http_addr = "0.0.0.0";
+        http_port = 3000;
+      };
+    };
   };
 
   services.opentelemetry-collector.enable = true;
