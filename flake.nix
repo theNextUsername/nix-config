@@ -140,6 +140,11 @@
           ./hosts/ns1
         ] ++ proxmoxHostModules;
       };
+      web1 = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/web1
+        ] ++ proxmoxHostModules;
+      };
       nepenthes = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit self; };
         modules = [
