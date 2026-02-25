@@ -9,6 +9,8 @@
     extraGroups = [ "wheel" "networkmanager" ];
   };
 
+  nix.gc.options = "--delete-older-than 7d";
+
   services.nixos-cli.enable = true;
 
   programs.firefox = {

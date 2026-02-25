@@ -6,6 +6,16 @@
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  system.autoUpgrade = {
+    allowReboot = true;
+    rebootWindow = {
+      lower = "01:00";
+      upper = "05:00";
+    };
+  };
+
+  nix.gc.options = "--delete-old";
+
 
   # Will not be able to rebuild if the grub device is not set
   # for a regular BIOS build we can just specify the block device

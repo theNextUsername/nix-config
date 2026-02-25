@@ -135,6 +135,11 @@
           ./hosts/peony 
         ] ++ proxmoxHostModules;
       };
+      orchid = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/orchid
+        ] ++ proxmoxHostModules;
+      };
       ns1 = nixpkgs.lib.nixosSystem {
         modules = [
           ./hosts/ns1
