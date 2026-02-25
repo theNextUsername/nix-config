@@ -2,12 +2,12 @@
 {
   services.nginx.enable = true;
   services.nginx = {
-
-  };
-
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "acme@thenextusername.xyz";
+    virtualHosts."www.addisyn.me" = {
+      root = "/var/www/html";      
+    };
+    virtualHosts."addisyn.me" = {
+      root = "/var/www/html";
+    };
   };
   
   system.stateVersion = "25.11";
