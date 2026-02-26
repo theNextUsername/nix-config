@@ -22,6 +22,6 @@
         iptables -D PREROUTING -t raw -j CT -p udp --dport 69 --helper tftp
     '';
     networking.extraHosts = ''
-        10.0.0.1 owntracks.thenextusername.xyz
+        192.168.2.18 owntracks.thenextusername.xyz
     '';
 }
