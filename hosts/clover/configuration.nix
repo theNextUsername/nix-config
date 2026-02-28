@@ -1,10 +1,27 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
 
   services.asterisk.enable = true;
   services.asterisk = {
-    confFiles = {
+    confFiles = let
+      apkg = config.services.asterisk.package;
+    in {
+      "asterisk.conf" = ''
+        [directories]
+        astcachedir => /var/cache/asterisk
+        astetcdir => /etc/asterisk
+        astmoddir => ${apkg}/lib/asterisk/modules
+        astvarlibdir => /var/lib/asterisk
+        astdbdir => /var/lib/asterisk
+        astkeydir => /var/lib/asterisk
+        astdatadir => /var/lib/asterisk
+        astagidir => ${apkg}/var/lib/asterisk/agi-bin
+        astspooldir => /var/spool/asterisk
+        astrundir => /var/run/asterisk
+        astlogdir => /var/log/asterisk
+        astsbindir => ${apkg}/sbin
+      '';
       "extensions.conf" = ''
         [from-internal]
         exten = 100,1,Answer()
@@ -16,7 +33,7 @@
         [transport-udp]
         type=transport
         protocol=udp
-        bind=0.0.0.0
+        bind=0.0.0.0:5060
 
         [6001]
         type=endpoint
@@ -38,7 +55,6 @@
       '';
     };
     useTheseDefaultConfFiles = [
-      "asterisk.conf"
       "modules.conf"
     ];
   };
