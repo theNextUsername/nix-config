@@ -140,6 +140,11 @@
           ./hosts/orchid
         ] ++ proxmoxHostModules;
       };
+      clover = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/clover
+        ] ++ proxmoxHostModules;
+      };
       ns1 = nixpkgs.lib.nixosSystem {
         modules = [
           ./hosts/ns1
