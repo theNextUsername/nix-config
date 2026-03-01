@@ -24,9 +24,12 @@
       '';
       "extensions.conf" = ''
         [from-internal]
+        exten = 6001,1,Dial(PJSIP/6001,20)
+        exten = 6002,1,Dial(PJSIP/6002,20)
         exten = 100,1,Answer()
         same = n,Wait(1)
         same = n,Playback(hello-world)
+        same = n,Wait(50)
         same = n,Hangup()
       '';
       "pjsip.conf" = ''
@@ -35,23 +38,38 @@
         protocol=udp
         bind=0.0.0.0:5060
 
-        [6001]
+        [endpoint_internal](!)
         type=endpoint
         context=from-internal
         disallow=all
         allow=ulaw
+
+        [6001](endpoint_internal)
         auth=6001
         aors=6001
 
-        [6001]
+        [6002](endpoint_internal)
+        auth=6002
+        aors=6002
+
+        [auth_userpass](!)
         type=auth
         auth_type=userpass
+
+        [6001](auth_userpass)
         password=unsecurepassword
         username=6001
 
-        [6001]
+        [6002](auth_userpass)
+        password=alsounsecure
+        username=6002
+
+        [aor_dynamic](!)
         type=aor
         max_contacts=1
+
+        [6001](aor_dynamic)
+        [6002](aor_dynamic)
       '';
     };
     useTheseDefaultConfFiles = [
