@@ -13,13 +13,13 @@
     networking.firewall.allowedTCPPorts = [  ];
     networking.firewall.allowedUDPPorts = [ 51820 ];
     networking.firewall.connectionTrackingModules = [
-      "tftp"  
+      "sip"  
     ];
     networking.firewall.extraCommands = ''
-        iptables -A PREROUTING -t raw -j CT -p udp --dport 69 --helper tftp
+        iptables -A INPUT -m conntrack --ctstate RELATED -m helper --helper sip -d 192.168.2.60 -p udp -j ACCEPT 
     '';
     networking.firewall.extraStopCommands = ''
-        iptables -D PREROUTING -t raw -j CT -p udp --dport 69 --helper tftp
+        iptables -D INPUT -m conntrack --ctstate RELATED -m helper --helper sip -d 192.168.2.60 -p udp -j ACCEPT 
     '';
     networking.extraHosts = ''
         192.168.2.18 owntracks.thenextusername.xyz

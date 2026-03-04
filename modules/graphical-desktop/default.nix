@@ -26,7 +26,10 @@
   # Configure split DNS
   networking.networkmanager.enable = true;
   networking.networkmanager.dns = "dnsmasq";
-  networking.networkmanager.plugins = [ pkgs.networkmanager-openvpn ];
+  networking.networkmanager.plugins = [
+    pkgs.networkmanager-openvpn
+    pkgs.networkmanager-strongswan
+  ];
 
 
   environment.etc."NetworkManager/dnsmasq.d/servers".text = ''
