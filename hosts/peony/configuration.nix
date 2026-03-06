@@ -32,6 +32,7 @@
             grant peony-patch. name _acme-challenge.24297fd6f177d0d97e40c2a4ba822bc3a76a7442cdf1300b1524483b68b7e52.812914.xyz. TXT;
             grant peony-web1. name _acme-challenge.7b103805de4ac1976fc60c25df6ebda0cfce3076da15adce94f2f8c4e2b8256.812914.xyz. TXT;
             grant peony-web1. name _acme-challenge.50f7dae05d132bb733fe0b8f0e2afd93bdaf02109fe3416f3ff6ba397743080.812914.xyz. TXT;
+            grant peony-web1. name _acme-challenge.603834623134761c029243c7a8c931c5307cf7b9116bcfb11bf1ccb0622d92b.812914.xyz. TXT;
           };
         '';
       };

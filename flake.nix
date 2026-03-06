@@ -145,6 +145,11 @@
           ./hosts/clover
         ] ++ proxmoxHostModules;
       };
+      coffea = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/coffea
+        ] ++ proxmoxHostModules;
+      };
       ns1 = nixpkgs.lib.nixosSystem {
         modules = [
           ./hosts/ns1
