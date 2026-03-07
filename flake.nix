@@ -8,6 +8,10 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-cli = {
       url = "github:nix-community/nixos-cli/";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,6 +47,7 @@
     nixpkgs,
     nixos-hardware,
     home-manager,
+    sops-nix,
     nixos-cli,
     nixos-generators,
     microvm,
@@ -57,6 +62,7 @@
 
     defaultModules = [
       ./modules/common.nix
+      sops-nix.nixosModules.sops
       nixos-cli.nixosModules.nixos-cli
     ];
 
