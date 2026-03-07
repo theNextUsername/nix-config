@@ -5,6 +5,7 @@ in
 {
   imports = [
     ./ssh.nix
+    ./git.nix
     ./waybar.nix
     ./niri.nix
     ./unison.nix
@@ -39,8 +40,6 @@ in
     ethtool
     pciutils
     usbutils
-    git
-    git-credential-manager
     remmina
     kitty
     hyprpolkitagent
@@ -64,6 +63,7 @@ in
     networkmanagerapplet
     rclone
     age
+    sops
     (writeShellApplication {
       name = "ewrap";
       runtimeInputs = [ alacritty helix ];
@@ -135,19 +135,6 @@ in
   "${themePackage}/share/color-schemes/${colorSchemeSlug}.colors";
 
   fonts.fontconfig.enable = true;
-
-  programs.git = {
-    enable = true;
-    settings = {
-      user.name = "theNextUsername";
-      user.email = "thenextusername@thenextusername.xyz";
-      core.editor = config.home.sessionVariables.EDITOR;
-      credential.helper = "manager";
-      credential."https://github.com".username = "theNextUsername";
-      credential.credentialStore = "cache";
-      init.defaultBranch = "main";
-    };
-  };
 
   programs.bash = {
     enable = true;
