@@ -14,6 +14,9 @@ in {
         ROOT_URL = "https://${srv.DOMAIN}";
       };
       service.DISABLE_REGISTRATION = true;
+      security = {
+        GLOBAL_TWO_FACTOR_REQUIREMENT = true;
+      };
     };
   };
 
