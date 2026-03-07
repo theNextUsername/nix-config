@@ -22,9 +22,24 @@ in
       default = defaultRootKeys;
       description = "List of keys to use for users.users.root.openssh.authorizedKeys.keys";
     };
+    flakePath = lib.mkOption {
+      type = lib.types.singleLineStr;
+      default = "https://coffea.thenextusername.xyz/tnu/nix-config";
+      description = "Location the flake should be fetched from for e.g. update or nix commands";
+    };
   };
   config = {
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix.registry.nix-config = {
+      from = {
+        id = "nix-config";
+        type = "indirect";
+      };
+      to = {
+        type = "git"; # assuming we are always using git
+        url = cfg.flakePath;
+      };
+    };
 
     system.autoUpgrade.enable = lib.mkDefault true;
     system.autoUpgrade = {
@@ -33,7 +48,7 @@ in
       persistent = true;
       operation = "switch";
       dates = "daily";
-      flake = "github:theNextUsername/nix-config";
+      flake = "git+${cfg.flakePath}";
     };
 
     nix.extraOptions = ''
